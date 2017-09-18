@@ -1,0 +1,260 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/fisiaka2/ece385/lab4/bit_serial_processor/simulation/modelsim
+vcompute
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+I@aoHKGcDfknU_4Ak_PD331
+VF]:?C:MPUkP4PV9`m`O5L3
+S1
+Z2 d/home/fisiaka2/ece385/lab4/bit_serial_processor/simulation/modelsim
+w1473975283
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/compute.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/compute.sv
+L0 1
+Z3 OV;L;10.1d;51
+r1
+31
+Z4 o-sv -work work -O0
+Z5 !s92 -sv -work work +incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor -O0
+!i10b 1
+!s100 7LVU_[N<0E?X:R<XMgDXd1
+!s105 compute_sv_unit
+!s85 0
+!s108 1505761850.624672
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/compute.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/compute.sv|
+!s101 -O0
+vcontrol
+R1
+IAl0LEWTiQX6Qd5_;BE1W20
+Vf>I7kP`Q[nPGYZ1F6UJdQ2
+S1
+R2
+w1505760056
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/Control.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/Control.sv
+L0 3
+R3
+r1
+31
+R4
+R5
+!i10b 1
+!s100 M?B:G?jFn9H7i=KVEo78b1
+!s105 Control_sv_unit
+!s85 0
+!s108 1505761850.525049
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Control.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Control.sv|
+!s101 -O0
+vHexDriver
+R1
+IFhX?bbS3K>3189LBOEddn2
+V2G6=_O>lD=3U`GOXc0nkW3
+S1
+R2
+w1472679712
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/HexDriver.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/HexDriver.sv
+L0 1
+R3
+r1
+31
+R4
+n@hex@driver
+R5
+!i10b 1
+!s100 :QI]O7d;G7L?O`zABIo;42
+!s105 HexDriver_sv_unit
+!s85 0
+!s108 1505761850.417916
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/HexDriver.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/HexDriver.sv|
+!s101 -O0
+vProcessor
+R1
+IHPme1d;EO61:ElJ_T^QO01
+VDIH=Jb^oK@oUC;WAj:F[Y2
+S1
+R2
+w1505760532
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/Processor.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/Processor.sv
+L0 8
+R3
+r1
+31
+R4
+R5
+n@processor
+!i10b 1
+!s100 8WcA6C:XNU:[3z0VK`lOc0
+!s105 Processor_sv_unit
+!s85 0
+!s108 1505761851.149185
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Processor.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Processor.sv|
+!s101 -O0
+vreg_8
+R1
+IgmCD=OiIJA54YALhS?8L60
+VLUYDLUY?eZ]T5>V:QG?]K3
+S1
+R2
+w1505760017
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_8.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_8.sv
+L0 1
+R3
+r1
+31
+R4
+R5
+!i10b 1
+!s100 _AD8;[:nGfjQTDk9OM8F<3
+!s105 Reg_8_sv_unit
+!s85 0
+!s108 1505761850.985603
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_8.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_8.sv|
+!s101 -O0
+vregister_unit
+R1
+I>?icn5_gNa[FC`U<5UUnZ1
+VXNIABo<WzcN0KQUUSQQA@1
+S1
+R2
+w1505760089
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/Register_unit.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/Register_unit.sv
+L0 1
+R3
+r1
+31
+R4
+R5
+!i10b 1
+!s100 `4HQ[D^fSA>mF4cN[``@n3
+!s105 Register_unit_sv_unit
+!s85 0
+!s108 1505761851.053781
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Register_unit.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Register_unit.sv|
+!s101 -O0
+vrouter
+R1
+I2bcQK:P2?`TQz6>PO4ccb0
+VmkijiYZKfQjM=1jzcIjDI0
+S1
+R2
+w1472679706
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/Router.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/Router.sv
+L0 1
+R3
+r1
+31
+R4
+R5
+!i10b 1
+!s100 Mc7z?:ON5>27jAK:f3E<h1
+!s105 Router_sv_unit
+!s85 0
+!s108 1505761850.898702
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Router.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Router.sv|
+!s101 -O0
+vsync
+R1
+IFjCnFB9[=A0l][L0O=e3c3
+VDY37AGl6YeZi>Nz]67AGE0
+Z6 !s105 Synchronizers_sv_unit
+S1
+R2
+Z7 w1473642985
+Z8 8/home/fisiaka2/ece385/lab4/bit_serial_processor/Synchronizers.sv
+Z9 F/home/fisiaka2/ece385/lab4/bit_serial_processor/Synchronizers.sv
+L0 4
+R3
+r1
+31
+Z10 !s108 1505761850.736853
+Z11 !s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/Synchronizers.sv|
+Z12 !s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/Synchronizers.sv|
+R4
+R5
+!i10b 1
+!s100 BREHn5V=d0><jcKc<af?@1
+!s85 0
+!s101 -O0
+vsync_r0
+R1
+I1NJ2o`MSK`nEN=ZW3EYOW1
+VMZaa5F6HXTWE1Gh5J:zVS3
+R6
+S1
+R2
+R7
+R8
+R9
+L0 18
+R3
+r1
+31
+R10
+R11
+R12
+R4
+R5
+!i10b 1
+!s100 coLfZEefWCP:jO8TCg0oG3
+!s85 0
+!s101 -O0
+vsync_r1
+R1
+IQ3i[jUIaY<cQXIj7Cd=Vb2
+VCZMQ_3:a@hlC9oHD;iQnm0
+R6
+S1
+R2
+R7
+R8
+R9
+L0 39
+R3
+r1
+31
+R10
+R11
+R12
+R4
+R5
+!i10b 1
+!s100 NOo=KTgWo@:>1cg[`=ZCj2
+!s85 0
+!s101 -O0
+vtestbench
+R1
+!i10b 1
+!s100 72_zBjHFhb^4QRSeCOKn83
+IDASLi:MOKznYY5Hnfb>F]3
+VhGfW:390DM[oDMzegDH9`2
+!s105 testbench_sv_unit
+S1
+R2
+w1505760587
+8/home/fisiaka2/ece385/lab4/bit_serial_processor/testbench.sv
+F/home/fisiaka2/ece385/lab4/bit_serial_processor/testbench.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1505761851.224702
+!s107 /home/fisiaka2/ece385/lab4/bit_serial_processor/testbench.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/fisiaka2/ece385/lab4/bit_serial_processor|/home/fisiaka2/ece385/lab4/bit_serial_processor/testbench.sv|
+!s101 -O0
+R4
+R5
