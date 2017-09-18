@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Processor
-Mon Sep 18 13:25:00 2017
+Mon Sep 18 13:49:59 2017
 Quartus II 32-bit Version 13.1.4 Build 182 03/12/2014 SJ Full Version
 
 
@@ -17,11 +17,9 @@ Quartus II 32-bit Version 13.1.4 Build 182 03/12/2014 SJ Full Version
   9. Registers Removed During Synthesis
  10. General Register Statistics
  11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Port Connectivity Checks: "HexDriver:HexBU"
- 13. Port Connectivity Checks: "HexDriver:HexAU"
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
- 16. Analysis & Synthesis Suppressed Messages
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
+ 14. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -47,16 +45,16 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Sep 18 13:25:00 2017       ;
+; Analysis & Synthesis Status        ; Successful - Mon Sep 18 13:49:59 2017       ;
 ; Quartus II 32-bit Version          ; 13.1.4 Build 182 03/12/2014 SJ Full Version ;
 ; Revision Name                      ; Processor                                   ;
 ; Top-level Entity Name              ; Processor                                   ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 55                                          ;
-;     Total combinational functions  ; 46                                          ;
-;     Dedicated logic registers      ; 27                                          ;
-; Total registers                    ; 27                                          ;
-; Total pins                         ; 54                                          ;
+; Total logic elements               ; 85                                          ;
+;     Total combinational functions  ; 72                                          ;
+;     Dedicated logic registers      ; 43                                          ;
+; Total registers                    ; 43                                          ;
+; Total pins                         ; 66                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -181,7 +179,7 @@ applicable agreement for further details.
 ; Synchronizers.sv                 ; yes             ; User SystemVerilog HDL File  ; /home/fisiaka2/ece385/lab4/bit_serial_processor/Synchronizers.sv ;         ;
 ; Router.sv                        ; yes             ; User SystemVerilog HDL File  ; /home/fisiaka2/ece385/lab4/bit_serial_processor/Router.sv        ;         ;
 ; Register_unit.sv                 ; yes             ; User SystemVerilog HDL File  ; /home/fisiaka2/ece385/lab4/bit_serial_processor/Register_unit.sv ;         ;
-; Reg_4.sv                         ; yes             ; User SystemVerilog HDL File  ; /home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_4.sv         ;         ;
+; Reg_8.sv                         ; yes             ; User SystemVerilog HDL File  ; /home/fisiaka2/ece385/lab4/bit_serial_processor/Reg_8.sv         ;         ;
 +----------------------------------+-----------------+------------------------------+------------------------------------------------------------------+---------+
 
 
@@ -190,28 +188,28 @@ applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 55        ;
+; Estimated Total logic elements              ; 85        ;
 ;                                             ;           ;
-; Total combinational functions               ; 46        ;
+; Total combinational functions               ; 72        ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 32        ;
+;     -- 4 input functions                    ; 54        ;
 ;     -- 3 input functions                    ; 4         ;
-;     -- <=2 input functions                  ; 10        ;
+;     -- <=2 input functions                  ; 14        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 46        ;
+;     -- normal mode                          ; 72        ;
 ;     -- arithmetic mode                      ; 0         ;
 ;                                             ;           ;
-; Total registers                             ; 27        ;
-;     -- Dedicated logic registers            ; 27        ;
+; Total registers                             ; 43        ;
+;     -- Dedicated logic registers            ; 43        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 54        ;
+; I/O pins                                    ; 66        ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ; Maximum fan-out node                        ; Clk~input ;
-; Maximum fan-out                             ; 27        ;
-; Total fan-out                               ; 305       ;
-; Average fan-out                             ; 1.69      ;
+; Maximum fan-out                             ; 43        ;
+; Total fan-out                               ; 483       ;
+; Average fan-out                             ; 1.96      ;
 +---------------------------------------------+-----------+
 
 
@@ -220,18 +218,24 @@ applicable agreement for further details.
 +-----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
 ; Compilation Hierarchy Node  ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                           ; Library Name ;
 +-----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
-; |Processor                  ; 46 (0)            ; 27 (0)       ; 0           ; 0            ; 0       ; 0         ; 54   ; 0            ; |Processor                                    ; work         ;
+; |Processor                  ; 72 (0)            ; 43 (0)       ; 0           ; 0            ; 0       ; 0         ; 66   ; 0            ; |Processor                                    ; work         ;
 ;    |HexDriver:HexAL|        ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|HexDriver:HexAL                    ; work         ;
+;    |HexDriver:HexAU|        ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|HexDriver:HexAU                    ; work         ;
 ;    |HexDriver:HexBL|        ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|HexDriver:HexBL                    ; work         ;
+;    |HexDriver:HexBU|        ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|HexDriver:HexBU                    ; work         ;
 ;    |compute:compute_unit|   ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|compute:compute_unit               ; work         ;
-;    |control:control_unit|   ; 6 (6)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|control:control_unit               ; work         ;
-;    |register_unit:reg_unit| ; 20 (0)            ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit             ; work         ;
-;       |reg_4:reg_A|         ; 10 (10)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit|reg_4:reg_A ; work         ;
-;       |reg_4:reg_B|         ; 10 (10)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit|reg_4:reg_B ; work         ;
+;    |control:control_unit|   ; 10 (10)           ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|control:control_unit               ; work         ;
+;    |register_unit:reg_unit| ; 28 (0)            ; 16 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit             ; work         ;
+;       |reg_8:reg_A|         ; 14 (14)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit|reg_8:reg_A ; work         ;
+;       |reg_8:reg_B|         ; 14 (14)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|register_unit:reg_unit|reg_8:reg_B ; work         ;
 ;    |sync:Din_sync[0]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[0]                   ; work         ;
 ;    |sync:Din_sync[1]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[1]                   ; work         ;
 ;    |sync:Din_sync[2]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[2]                   ; work         ;
 ;    |sync:Din_sync[3]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[3]                   ; work         ;
+;    |sync:Din_sync[4]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[4]                   ; work         ;
+;    |sync:Din_sync[5]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[5]                   ; work         ;
+;    |sync:Din_sync[6]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[6]                   ; work         ;
+;    |sync:Din_sync[7]|       ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:Din_sync[7]                   ; work         ;
 ;    |sync:F_sync[0]|         ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:F_sync[0]                     ; work         ;
 ;    |sync:F_sync[1]|         ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:F_sync[1]                     ; work         ;
 ;    |sync:F_sync[2]|         ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Processor|sync:F_sync[2]                     ; work         ;
@@ -246,18 +250,22 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
-+--------------------------------------------------------------------------------------------------------+
-; State Machine - |Processor|control:control_unit|curr_state                                             ;
-+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
-; Name         ; curr_state.F ; curr_state.E ; curr_state.D ; curr_state.C ; curr_state.B ; curr_state.A ;
-+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
-; curr_state.A ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
-; curr_state.B ; 0            ; 0            ; 0            ; 0            ; 1            ; 1            ;
-; curr_state.C ; 0            ; 0            ; 0            ; 1            ; 0            ; 1            ;
-; curr_state.D ; 0            ; 0            ; 1            ; 0            ; 0            ; 1            ;
-; curr_state.E ; 0            ; 1            ; 0            ; 0            ; 0            ; 1            ;
-; curr_state.F ; 1            ; 0            ; 0            ; 0            ; 0            ; 1            ;
-+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |Processor|control:control_unit|curr_state                                                                                                         ;
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+; Name         ; curr_state.J ; curr_state.I ; curr_state.H ; curr_state.G ; curr_state.F ; curr_state.E ; curr_state.D ; curr_state.C ; curr_state.B ; curr_state.A ;
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+; curr_state.A ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
+; curr_state.B ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 1            ;
+; curr_state.C ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 1            ;
+; curr_state.D ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 1            ;
+; curr_state.E ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 1            ;
+; curr_state.F ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; curr_state.G ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; curr_state.H ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; curr_state.I ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
+; curr_state.J ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ;
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
 
 
 +------------------------------------------------------------+
@@ -268,7 +276,8 @@ Encoding Type:  One-Hot
 ; control:control_unit|curr_state~2     ; Lost fanout        ;
 ; control:control_unit|curr_state~3     ; Lost fanout        ;
 ; control:control_unit|curr_state~4     ; Lost fanout        ;
-; Total Number of Removed Registers = 3 ;                    ;
+; control:control_unit|curr_state~5     ; Lost fanout        ;
+; Total Number of Removed Registers = 4 ;                    ;
 +---------------------------------------+--------------------+
 
 
@@ -277,12 +286,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 27    ;
-; Number of registers using Synchronous Clear  ; 9     ;
+; Total registers                              ; 43    ;
+; Number of registers using Synchronous Clear  ; 17    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 6     ;
+; Number of registers using Clock Enable       ; 14    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -292,27 +301,9 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Processor|register_unit:reg_unit|reg_4:reg_A|Data_Out[0] ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Processor|register_unit:reg_unit|reg_4:reg_B|Data_Out[0] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |Processor|register_unit:reg_unit|reg_8:reg_A|Data_Out[2] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |Processor|register_unit:reg_unit|reg_8:reg_B|Data_Out[6] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "HexDriver:HexBU" ;
-+------+-------+----------+-------------------+
-; Port ; Type  ; Severity ; Details           ;
-+------+-------+----------+-------------------+
-; In0  ; Input ; Info     ; Stuck at GND      ;
-+------+-------+----------+-------------------+
-
-
-+---------------------------------------------+
-; Port Connectivity Checks: "HexDriver:HexAU" ;
-+------+-------+----------+-------------------+
-; Port ; Type  ; Severity ; Details           ;
-+------+-------+----------+-------------------+
-; In0  ; Input ; Info     ; Stuck at GND      ;
-+------+-------+----------+-------------------+
 
 
 +-------------------------------+
@@ -330,7 +321,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.1.4 Build 182 03/12/2014 SJ Full Version
-    Info: Processing started: Mon Sep 18 13:24:57 2017
+    Info: Processing started: Mon Sep 18 13:49:57 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Processor -c Processor
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 1 design units, including 1 entities, in source file Processor.sv
@@ -353,44 +344,31 @@ Info (12021): Found 1 design units, including 1 entities, in source file Registe
     Info (12023): Found entity 1: register_unit
 Info (12021): Found 1 design units, including 1 entities, in source file Reg_4.sv
     Info (12023): Found entity 1: reg_4
+Info (12021): Found 1 design units, including 1 entities, in source file Reg_8.sv
+    Info (12023): Found entity 1: reg_8
 Info (12127): Elaborating entity "Processor" for the top level hierarchy
 Info (12128): Elaborating entity "register_unit" for hierarchy "register_unit:reg_unit"
-Info (12128): Elaborating entity "reg_4" for hierarchy "register_unit:reg_unit|reg_4:reg_A"
+Info (12128): Elaborating entity "reg_8" for hierarchy "register_unit:reg_unit|reg_8:reg_A"
 Info (12128): Elaborating entity "compute" for hierarchy "compute:compute_unit"
 Info (12128): Elaborating entity "router" for hierarchy "router:router"
 Info (12128): Elaborating entity "control" for hierarchy "control:control_unit"
-Info (10264): Verilog HDL Case Statement information at Control.sv(39): all case item expressions in this case statement are onehot
+Info (10264): Verilog HDL Case Statement information at Control.sv(43): all case item expressions in this case statement are onehot
 Info (12128): Elaborating entity "HexDriver" for hierarchy "HexDriver:HexAL"
 Info (12128): Elaborating entity "sync" for hierarchy "sync:button_sync[0]"
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "AhexU[0]" is stuck at GND
-    Warning (13410): Pin "AhexU[1]" is stuck at GND
-    Warning (13410): Pin "AhexU[2]" is stuck at GND
-    Warning (13410): Pin "AhexU[3]" is stuck at GND
-    Warning (13410): Pin "AhexU[4]" is stuck at GND
-    Warning (13410): Pin "AhexU[5]" is stuck at GND
-    Warning (13410): Pin "AhexU[6]" is stuck at VCC
-    Warning (13410): Pin "BhexU[0]" is stuck at GND
-    Warning (13410): Pin "BhexU[1]" is stuck at GND
-    Warning (13410): Pin "BhexU[2]" is stuck at GND
-    Warning (13410): Pin "BhexU[3]" is stuck at GND
-    Warning (13410): Pin "BhexU[4]" is stuck at GND
-    Warning (13410): Pin "BhexU[5]" is stuck at GND
-    Warning (13410): Pin "BhexU[6]" is stuck at VCC
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (17049): 4 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file /home/fisiaka2/ece385/lab4/bit_serial_processor/output_files/Processor.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 109 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 14 input pins
-    Info (21059): Implemented 40 output pins
-    Info (21061): Implemented 55 logic cells
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 15 warnings
+Info (21057): Implemented 151 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 18 input pins
+    Info (21059): Implemented 48 output pins
+    Info (21061): Implemented 85 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 414 megabytes
-    Info: Processing ended: Mon Sep 18 13:25:00 2017
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Processing ended: Mon Sep 18 13:49:59 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
 +------------------------------------------+

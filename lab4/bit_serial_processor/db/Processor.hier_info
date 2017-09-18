@@ -9,6 +9,10 @@ Clk => sync:Din_sync[0].Clk
 Clk => sync:Din_sync[1].Clk
 Clk => sync:Din_sync[2].Clk
 Clk => sync:Din_sync[3].Clk
+Clk => sync:Din_sync[4].Clk
+Clk => sync:Din_sync[5].Clk
+Clk => sync:Din_sync[6].Clk
+Clk => sync:Din_sync[7].Clk
 Clk => sync:F_sync[0].Clk
 Clk => sync:F_sync[1].Clk
 Clk => sync:F_sync[2].Clk
@@ -22,6 +26,10 @@ Din[0] => sync:Din_sync[0].d
 Din[1] => sync:Din_sync[1].d
 Din[2] => sync:Din_sync[2].d
 Din[3] => sync:Din_sync[3].d
+Din[4] => sync:Din_sync[4].d
+Din[5] => sync:Din_sync[5].d
+Din[6] => sync:Din_sync[6].d
+Din[7] => sync:Din_sync[7].d
 F[0] => sync:F_sync[0].d
 F[1] => sync:F_sync[1].d
 F[2] => sync:F_sync[2].d
@@ -35,10 +43,18 @@ Aval[0] << A[0].DB_MAX_OUTPUT_PORT_TYPE
 Aval[1] << A[1].DB_MAX_OUTPUT_PORT_TYPE
 Aval[2] << A[2].DB_MAX_OUTPUT_PORT_TYPE
 Aval[3] << A[3].DB_MAX_OUTPUT_PORT_TYPE
+Aval[4] << A[4].DB_MAX_OUTPUT_PORT_TYPE
+Aval[5] << A[5].DB_MAX_OUTPUT_PORT_TYPE
+Aval[6] << A[6].DB_MAX_OUTPUT_PORT_TYPE
+Aval[7] << A[7].DB_MAX_OUTPUT_PORT_TYPE
 Bval[0] << B[0].DB_MAX_OUTPUT_PORT_TYPE
 Bval[1] << B[1].DB_MAX_OUTPUT_PORT_TYPE
 Bval[2] << B[2].DB_MAX_OUTPUT_PORT_TYPE
 Bval[3] << B[3].DB_MAX_OUTPUT_PORT_TYPE
+Bval[4] << B[4].DB_MAX_OUTPUT_PORT_TYPE
+Bval[5] << B[5].DB_MAX_OUTPUT_PORT_TYPE
+Bval[6] << B[6].DB_MAX_OUTPUT_PORT_TYPE
+Bval[7] << B[7].DB_MAX_OUTPUT_PORT_TYPE
 AhexL[0] << HexDriver:HexAL.Out0
 AhexL[1] << HexDriver:HexAL.Out0
 AhexL[2] << HexDriver:HexAL.Out0
@@ -70,41 +86,65 @@ BhexU[6] << HexDriver:HexBU.Out0
 
 
 |Processor|register_unit:reg_unit
-Clk => reg_4:reg_A.Clk
-Clk => reg_4:reg_B.Clk
-Reset => reg_4:reg_A.Reset
-Reset => reg_4:reg_B.Reset
-A_In => reg_4:reg_A.Shift_In
-B_In => reg_4:reg_B.Shift_In
-Ld_A => reg_4:reg_A.Load
-Ld_B => reg_4:reg_B.Load
-Shift_En => reg_4:reg_A.Shift_En
-Shift_En => reg_4:reg_B.Shift_En
-D[0] => reg_4:reg_A.D[0]
-D[0] => reg_4:reg_B.D[0]
-D[1] => reg_4:reg_A.D[1]
-D[1] => reg_4:reg_B.D[1]
-D[2] => reg_4:reg_A.D[2]
-D[2] => reg_4:reg_B.D[2]
-D[3] => reg_4:reg_A.D[3]
-D[3] => reg_4:reg_B.D[3]
-A_out <= reg_4:reg_A.Shift_Out
-B_out <= reg_4:reg_B.Shift_Out
-A[0] <= reg_4:reg_A.Data_Out[0]
-A[1] <= reg_4:reg_A.Data_Out[1]
-A[2] <= reg_4:reg_A.Data_Out[2]
-A[3] <= reg_4:reg_A.Data_Out[3]
-B[0] <= reg_4:reg_B.Data_Out[0]
-B[1] <= reg_4:reg_B.Data_Out[1]
-B[2] <= reg_4:reg_B.Data_Out[2]
-B[3] <= reg_4:reg_B.Data_Out[3]
+Clk => reg_8:reg_A.Clk
+Clk => reg_8:reg_B.Clk
+Reset => reg_8:reg_A.Reset
+Reset => reg_8:reg_B.Reset
+A_In => reg_8:reg_A.Shift_In
+B_In => reg_8:reg_B.Shift_In
+Ld_A => reg_8:reg_A.Load
+Ld_B => reg_8:reg_B.Load
+Shift_En => reg_8:reg_A.Shift_En
+Shift_En => reg_8:reg_B.Shift_En
+D[0] => reg_8:reg_A.D[0]
+D[0] => reg_8:reg_B.D[0]
+D[1] => reg_8:reg_A.D[1]
+D[1] => reg_8:reg_B.D[1]
+D[2] => reg_8:reg_A.D[2]
+D[2] => reg_8:reg_B.D[2]
+D[3] => reg_8:reg_A.D[3]
+D[3] => reg_8:reg_B.D[3]
+D[4] => reg_8:reg_A.D[4]
+D[4] => reg_8:reg_B.D[4]
+D[5] => reg_8:reg_A.D[5]
+D[5] => reg_8:reg_B.D[5]
+D[6] => reg_8:reg_A.D[6]
+D[6] => reg_8:reg_B.D[6]
+D[7] => reg_8:reg_A.D[7]
+D[7] => reg_8:reg_B.D[7]
+A_out <= reg_8:reg_A.Shift_Out
+B_out <= reg_8:reg_B.Shift_Out
+A[0] <= reg_8:reg_A.Data_Out[0]
+A[1] <= reg_8:reg_A.Data_Out[1]
+A[2] <= reg_8:reg_A.Data_Out[2]
+A[3] <= reg_8:reg_A.Data_Out[3]
+A[4] <= reg_8:reg_A.Data_Out[4]
+A[5] <= reg_8:reg_A.Data_Out[5]
+A[6] <= reg_8:reg_A.Data_Out[6]
+A[7] <= reg_8:reg_A.Data_Out[7]
+B[0] <= reg_8:reg_B.Data_Out[0]
+B[1] <= reg_8:reg_B.Data_Out[1]
+B[2] <= reg_8:reg_B.Data_Out[2]
+B[3] <= reg_8:reg_B.Data_Out[3]
+B[4] <= reg_8:reg_B.Data_Out[4]
+B[5] <= reg_8:reg_B.Data_Out[5]
+B[6] <= reg_8:reg_B.Data_Out[6]
+B[7] <= reg_8:reg_B.Data_Out[7]
 
 
-|Processor|register_unit:reg_unit|reg_4:reg_A
+|Processor|register_unit:reg_unit|reg_8:reg_A
 Clk => Data_Out[0]~reg0.CLK
 Clk => Data_Out[1]~reg0.CLK
 Clk => Data_Out[2]~reg0.CLK
 Clk => Data_Out[3]~reg0.CLK
+Clk => Data_Out[4]~reg0.CLK
+Clk => Data_Out[5]~reg0.CLK
+Clk => Data_Out[6]~reg0.CLK
+Clk => Data_Out[7]~reg0.CLK
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
@@ -114,6 +154,14 @@ Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
@@ -122,18 +170,34 @@ D[0] => Data_Out.DATAB
 D[1] => Data_Out.DATAB
 D[2] => Data_Out.DATAB
 D[3] => Data_Out.DATAB
+D[4] => Data_Out.DATAB
+D[5] => Data_Out.DATAB
+D[6] => Data_Out.DATAB
+D[7] => Data_Out.DATAB
 Shift_Out <= Data_Out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[0] <= Data_Out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[1] <= Data_Out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[2] <= Data_Out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[3] <= Data_Out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[4] <= Data_Out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[5] <= Data_Out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[6] <= Data_Out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[7] <= Data_Out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Processor|register_unit:reg_unit|reg_4:reg_B
+|Processor|register_unit:reg_unit|reg_8:reg_B
 Clk => Data_Out[0]~reg0.CLK
 Clk => Data_Out[1]~reg0.CLK
 Clk => Data_Out[2]~reg0.CLK
 Clk => Data_Out[3]~reg0.CLK
+Clk => Data_Out[4]~reg0.CLK
+Clk => Data_Out[5]~reg0.CLK
+Clk => Data_Out[6]~reg0.CLK
+Clk => Data_Out[7]~reg0.CLK
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
+Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
 Reset => Data_Out.OUTPUTSELECT
@@ -143,6 +207,14 @@ Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
 Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Load => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
+Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
 Shift_En => Data_Out.OUTPUTSELECT
@@ -151,11 +223,19 @@ D[0] => Data_Out.DATAB
 D[1] => Data_Out.DATAB
 D[2] => Data_Out.DATAB
 D[3] => Data_Out.DATAB
+D[4] => Data_Out.DATAB
+D[5] => Data_Out.DATAB
+D[6] => Data_Out.DATAB
+D[7] => Data_Out.DATAB
 Shift_Out <= Data_Out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[0] <= Data_Out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[1] <= Data_Out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[2] <= Data_Out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Data_Out[3] <= Data_Out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[4] <= Data_Out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[5] <= Data_Out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[6] <= Data_Out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Data_Out[7] <= Data_Out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Processor|compute:compute_unit
@@ -200,8 +280,20 @@ Reset => curr_state.OUTPUTSELECT
 Reset => curr_state.OUTPUTSELECT
 Reset => curr_state.OUTPUTSELECT
 Reset => curr_state.OUTPUTSELECT
+Reset => curr_state.OUTPUTSELECT
+Reset => curr_state.OUTPUTSELECT
+Reset => curr_state.OUTPUTSELECT
+Reset => curr_state.OUTPUTSELECT
 LoadA => Ld_A.DATAB
 LoadB => Ld_B.DATAB
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
+Execute => next_state.OUTPUTSELECT
 Execute => next_state.OUTPUTSELECT
 Execute => next_state.OUTPUTSELECT
 Execute => next_state.OUTPUTSELECT
@@ -318,6 +410,30 @@ q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |Processor|sync:Din_sync[3]
+Clk => q~reg0.CLK
+d => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Processor|sync:Din_sync[4]
+Clk => q~reg0.CLK
+d => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Processor|sync:Din_sync[5]
+Clk => q~reg0.CLK
+d => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Processor|sync:Din_sync[6]
+Clk => q~reg0.CLK
+d => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Processor|sync:Din_sync[7]
 Clk => q~reg0.CLK
 d => q~reg0.DATAIN
 q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
