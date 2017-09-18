@@ -5,3 +5,4 @@ lab?/*/output_files/
 lab?/*/simulation/
 lab?/*/output_files/
 lab?/*/incremental_db/
+*.bsf
