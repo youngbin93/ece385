@@ -26,6 +26,7 @@ module carry_lookahead_adder
 			c1 = (g[0] | (p[0] & 0));
 			c2 = (g[1] | (p[1] & c1));
 			c3 = (g[2] | (p[2] & c2));
+			CO = (g[3] | (p[3] & c3));
 		end
 	
 endmodule

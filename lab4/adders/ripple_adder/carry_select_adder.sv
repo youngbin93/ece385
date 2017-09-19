@@ -23,13 +23,13 @@ module carry_select_adder
 		
 		mux2 mux_1(.A(mux1A), .B(mux1B), .select(select1), .OUT(Sum[7:4]));
 		
-		four_bit_cra CRA_2A(.x(A[11:8]),  .y(B[11:8]),  .s(mux2A), .z(c2), .c(c2A));
-		four_bit_cra CRA_2B(.x(A[11:8]),  .y(B[11:8]),  .s(mux2B), .z(c2), .c(c2B));
+		four_bit_cra CRA_2A(.x(A[11:8]),  .y(B[11:8]),  .s(mux2A), .z(0), .c(c2A));
+		four_bit_cra CRA_2B(.x(A[11:8]),  .y(B[11:8]),  .s(mux2B), .z(1), .c(c2B));
 		
 		mux2 mux_2(.A(mux2A), .B(mux2B), .select(select2), .OUT(Sum[11:8]));
 		
-		four_bit_cra CRA_3A(.x(A[15:12]), .y(B[15:12]), .s(mux3A),.z(c3), .c(c3A));
-		four_bit_cra CRA_3B(.x(A[15:12]), .y(B[15:12]), .s(mux3B),.z(c3), .c(c3B));
+		four_bit_cra CRA_3A(.x(A[15:12]), .y(B[15:12]), .s(mux3A),.z(0), .c(c3A));
+		four_bit_cra CRA_3B(.x(A[15:12]), .y(B[15:12]), .s(mux3B),.z(1), .c(c3B));
 		
 		mux2 mux_3(.A(mux3A), .B(mux3B), .select(select3), .OUT(Sum[15:12]));
 		
