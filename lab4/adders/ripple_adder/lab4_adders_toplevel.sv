@@ -36,7 +36,7 @@ module lab4_adders_toplevel
 );
 
     /* Declare Internal Registers */
-    logic[15:0]     A;  // use this as an input to your adder
+    logic[15:0]     A, C;  // use this as an input to your adder
     logic[15:0]     B;  // use this as an input to your adder
     
     /* Declare Internal Wires
@@ -105,21 +105,21 @@ module lab4_adders_toplevel
      * in the same way that you'd place a 74-series hex driver chip on your protoboard 
      * Make sure only *one* adder module (out of the three types) is instantiated*/
 	  
-	 ripple_adder ripple_adder_inst
-    (
-        .A,             // This is shorthand for .A(A) when both wires/registers have the same name
-        .B,
-        .Sum(Sum_comb), // Connects the Sum_comb wire in this file to the Sum wire in ripple_adder.sv
-        .CO(CO_comb)
-    );
-	 
-//    carry_lookahead_adder carry_lookahead_adder_inst
+//	 ripple_adder ripple_adder_inst
 //    (
 //        .A,             // This is shorthand for .A(A) when both wires/registers have the same name
 //        .B,
 //        .Sum(Sum_comb), // Connects the Sum_comb wire in this file to the Sum wire in ripple_adder.sv
 //        .CO(CO_comb)
 //    );
+//	 
+    carry_lookahead_adder carry_lookahead_adder_inst
+    (
+        .A,             // This is shorthand for .A(A) when both wires/registers have the same name
+        .B,
+        .Sum(Sum_comb), // Connects the Sum_comb wire in this file to the Sum wire in ripple_adder.sv
+        .CO(CO_comb)
+    );
 
 //    carry_select_adder carry_select_adder_inst
 //    (

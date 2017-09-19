@@ -1,22 +1,20 @@
-module reg_16 (input  logic Clk, Reset, Shift_In, Load, Shift_En,
+module reg_16 (input  logic Clk, Reset,
               input  logic [15:0]  D,
-              output logic Shift_Out,
               output logic [15:0]  Data_Out);
 
+	 logic [15:0] data;
     always_ff @ (posedge Clk)
     begin
 	 	 if (Reset) //notice, this is a sycnrhonous reset, which is recommended on the FPGA
-			  Data_Out <= 16'h0;
-		 else if (Load)
-			  Data_Out <= D;
-		 else if (Shift_En)
+		 begin 
+			  data <= 16'h0;
+		 end
+		 else
 		 begin
-			  //concatenate shifted in data to the previous left-most 3 bits
-			  //note this works because we are in always_ff procedure block
-			  Data_Out <= { Shift_In, Data_Out[15:1] }; 
-	    end
+			  data <= D;
+		 end	  
     end
 	
-    assign Shift_Out = Data_Out[0];
+    assign Data_Out = data;
 
 endmodule
