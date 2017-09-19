@@ -13,3 +13,4 @@ lab?/*/*/output_files/
 lab?/*/*/incremental_db/
 *.qws
 *.ipinfo
+*.qdf
