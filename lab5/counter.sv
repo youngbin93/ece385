@@ -2,7 +2,7 @@ module counter(
 			input logic  down_up,  
 			input logic clk,  
 			input logic reset,   
-			output reg  [3:0] out, 
+			output reg  [3:0] out
 
 		);
   
