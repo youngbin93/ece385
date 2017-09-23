@@ -102,7 +102,8 @@ module eight_bit_multiplier
 		.Load(1'b1),
 		.Shift_En(1'b0), 
 		.D(Adder_X_Out), 
-		.Data_Out(reg_X_out)
+		.Data_Out(reg_X_out),
+		.Shift_Out(X)
 	 );
 	 
 	 // not done connecting 
@@ -130,6 +131,8 @@ module eight_bit_multiplier
 		.Shift_Out(M),
 		.Data_Out(B)
 	 );
+	 
+	 //add the control module here 
 		
     HexDriver AhexL_inst
     (
