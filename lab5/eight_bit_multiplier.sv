@@ -41,7 +41,7 @@ module eight_bit_multiplier
     logic[6:0]      AhexU_comb;
     logic[6:0]      BhexL_comb;
     logic[6:0]      BhexU_comb;
-	 logic Add_Sub, Shift, M, Add_Mux, Load_A;
+	 logic Add_Sub, Shift, M, Add_Mux, Load_A, Load_B, Clear_A;
     
     /* Decoders for HEX drivers and output registers
      * Note that the hex drivers are calculated one cycle after Sum so
@@ -80,10 +80,13 @@ module eight_bit_multiplier
 		.Clk(Clk),
 		.Reset(~Reset),
 		.Run(~Run),
+		.ClearA_LoadB(~ClearA_LoadB),
 		.M(M),
 		.Shift(Shift),
 		.Add_Sub(Add_Sub),
 		.Load_A(Load_A),
+		.Load_B(Load_B),
+		.Clear_A(Clear_A),
 		.Add_Mux(Add_Mux)
 	 );
 	 
@@ -91,7 +94,7 @@ module eight_bit_multiplier
 	 reg_1 reg_X
 	 (
 		.Clk(Clk),
-		.Reset(~Reset | ~ClearA_LoadB),
+		.Reset(~Reset | Clear_A),
 		.Shift_In(1'b0), 
 		.Load(Load_A),
 		.Shift_En(1'b0), 
@@ -103,7 +106,7 @@ module eight_bit_multiplier
 	 reg_8 reg_A
 	 (
 		.Clk(Clk),
-		.Reset(~Reset | ~ClearA_LoadB),
+		.Reset(~Reset | Clear_A),
 		.Shift_In(reg_X_out), 
 		.Load(Load_A),
 		.Shift_En(Shift), 
@@ -117,7 +120,7 @@ module eight_bit_multiplier
 		.Clk(Clk),
 		.Reset(~Reset),
 		.Shift_In(A_0), 
-		.Load(~ClearA_LoadB),
+		.Load(Load_B),
 		.Shift_En(Shift), 
 		.D(SW), 
 		.Shift_Out(M),

@@ -3,7 +3,9 @@ module counter
 		input logic Clk,  
 		input logic Reset,   
 		input logic Run, 
+		output logic Clear_A,
 		output reg  [4:0] out
+		
 );
 
 logic count;
@@ -19,8 +21,9 @@ begin
      begin
 		 out <= 5'b00000;
 		 count <= 1'b0;
+		 Clear_A <= 1'b1;
 	  end
-	  if (count == 1'b1) 
+	  else if (count == 1'b1) 
 	  begin
 		 out ++;
 	  end
