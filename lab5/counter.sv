@@ -20,7 +20,7 @@ begin
 		 out <= 5'b00000;
 		 count <= 1'b0;
 	  end
-	  else 
+	  if (count == 0) 
 	  begin
 		 out ++;
 	  end
