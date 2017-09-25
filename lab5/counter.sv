@@ -2,15 +2,28 @@ module counter
 (  
 		input logic Clk,  
 		input logic Reset,   
-		output reg  [3:0] out
+		input logic Run, 
+		output reg  [4:0] out
 );
-  
+
+logic count;
+
 always_ff @(posedge Clk)
 begin
-	  if (Reset)  
-		 out <= 4'b0;
+	  
+	  if(Run == 1)
+	  begin
+			count <= 1'b1;
+	  end
+	  else if (Reset | out == 17)
+     begin
+		 out <= 5'b00000;
+		 count <= 1'b0;
+	  end
 	  else 
+	  begin
 		 out ++;
+	  end
 end
 	  
 endmodule

@@ -31,8 +31,8 @@ module eight_bit_multiplier
 );
 
     /* Declare Internal Registers */
-    logic[7:0]     A, B, Adder_Out;  // use this as an input to your adder
-	 logic reg_X_out, A_0, Adder_X_Out, M;
+    logic[7:0]     A, B, Adder_Out,switch_mux_out;  // use this as an input to your adder
+	 logic reg_X_out, A_0, Adder_X_Out;
     
     /* Declare Internal Wires
      * Wheather an internal logic signal becomes a register or wire depends
@@ -41,35 +41,7 @@ module eight_bit_multiplier
     logic[6:0]      AhexU_comb;
     logic[6:0]      BhexL_comb;
     logic[6:0]      BhexU_comb;
-	 logic add_sub, shift;
-	 
-//    
-//    /* Behavior of registers A, B, Sum, and CO */
-//    always_ff @(posedge Clk) begin
-//        
-//        if (!Reset) begin
-//            // if reset is pressed, clear the adder's input registers
-//            A <= 16'h0000;
-//            B <= 16'h0000;
-//            Sum <= 16'h0000;
-//            CO <= 1'b0;
-//        end else if (!LoadB) begin
-//            // If LoadB is pressed, copy switches to register B
-//            B <= SW;
-//        end else begin
-//            // otherwise, continuously copy switches to register A
-//            A <= SW;
-//        end
-//        
-//        // transfer sum and carry-out from adder to output register
-//        // every clock cycle that Run is pressed
-//        if (!Run) begin
-//            Sum <= Sum_comb;
-//            CO <= CO_comb;
-//        end
-//            // else, Sum and CO maintain their previous values
-//        
-//    end
+	 logic Add_Sub, Shift, M, Add_Mux, Load_A;
     
     /* Decoders for HEX drivers and output registers
      * Note that the hex drivers are calculated one cycle after Sum so
@@ -87,46 +59,66 @@ module eight_bit_multiplier
 	 adder_subber nine_bit_adder
 	 (
 		  .A(A),
-		  .B(SW),
-		  .add_sub(add_sub),
+		  .B(switch_mux_out),
+		  .add_sub(Add_Sub),
 		  .Sum(Adder_Out),
 		  .X(Adder_X_Out)
+	 );
+	 
+	 /* Adds zero or switches */
+	 mux2_8bit switch_mux
+	 (
+		.A(SW),
+		.B(8'b00000000),
+		.select(Add_Mux),
+		.OUT(switch_mux_out)
+	 );
+	 
+	 /* Control module */
+	 control control
+	 (
+		.Clk(Clk),
+		.Reset(~Reset),
+		.Run(~Run),
+		.M(M),
+		.Shift(Shift),
+		.Add_Sub(Add_Sub),
+		.Load_A(Load_A),
+		.Add_Mux(Add_Mux)
 	 );
 	 
 	 /* Registers X, A and B */
 	 reg_1 reg_X
 	 (
 		.Clk(Clk),
-		.Reset(Reset | ClearA_LoadB),
-		.Shift_In(1'b1), 
-		.Load(1'b1),
+		.Reset(~Reset | ~ClearA_LoadB),
+		.Shift_In(1'b0), 
+		.Load(Load_A),
 		.Shift_En(1'b0), 
 		.D(Adder_X_Out), 
 		.Data_Out(reg_X_out),
 		.Shift_Out(X)
 	 );
-	 
-	 // not done connecting 
+	  
 	 reg_8 reg_A
 	 (
 		.Clk(Clk),
-		.Reset(Reset | ClearA_LoadB),
+		.Reset(~Reset | ~ClearA_LoadB),
 		.Shift_In(reg_X_out), 
-		.Load(),
-		.Shift_En(), 
+		.Load(Load_A),
+		.Shift_En(Shift), 
 		.D(Adder_Out), 
 		.Shift_Out(A_0),
 		.Data_Out(A)
 	 );
 	 
-	 //not done connecting
 	 reg_8 reg_B
 	 (
 		.Clk(Clk),
-		.Reset(Reset),
+		.Reset(~Reset),
 		.Shift_In(A_0), 
-		.Load(ClearA_LoadB),
-		.Shift_En(), 
+		.Load(~ClearA_LoadB),
+		.Shift_En(Shift), 
 		.D(SW), 
 		.Shift_Out(M),
 		.Data_Out(B)
