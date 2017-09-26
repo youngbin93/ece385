@@ -17,12 +17,12 @@ begin
 	  if(Run == 1)
 	  begin
 			count <= 1'b1;
+			Clear_A <= 1'b1;
 	  end
-	  else if (Reset | out == 17)
-     	  begin
+	  else if (Reset | out == 16)
+          begin
 		 out <= 5'b00000;
 		 count <= 1'b0;
-		 Clear_A <= 1'b1;
 	  end
 	  else if (count == 1'b1) 
 	  begin
