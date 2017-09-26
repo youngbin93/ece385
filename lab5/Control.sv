@@ -9,13 +9,13 @@ module control (input  logic Clk, Reset, ClearA_LoadB, Run, M,
     
 
 	logic [4:0] count;
+	logic Clear_A_counter;
     
     // Assign outputs based on state
 	always_comb
     begin
 		Shift = 1'b0;
 		Load_A = 1'b0;
-		Load_B = 1'b0;
 		Add_Sub = 1'b0;
 		Add_Mux = 1'b0;
 		
@@ -48,13 +48,14 @@ module control (input  logic Clk, Reset, ClearA_LoadB, Run, M,
 			Shift = 1'b1;
 		end
     end
-	 
+assign Clear_A = Clear_A_counter | ClearA_LoadB; 
+assign Load_B = ClearA_LoadB;
 counter counter
 (
 	.Clk(Clk),
 	.Reset(Reset),
 	.Run(Run),
 	.out(count),
-	.Clear_A(Clear_A)
+	.Clear_A(Clear_A_counter)
 );
 endmodule
