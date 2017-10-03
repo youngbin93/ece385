@@ -1,6 +1,6 @@
 module register #(parameter size = 16)
 (
-	input logic Clk, Load
+	input logic Clk, Load,
 	input logic [size - 1:0] in,
 	output logic [size - 1:0] out
 );
@@ -22,3 +22,5 @@ begin
 end
 
 assign out = data;
+
+endmodule

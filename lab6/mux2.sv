@@ -15,3 +15,4 @@ begin
 		C = B;
 	end
 end
+endmodule
