@@ -79,7 +79,7 @@ assign MIO_EN = ~OE;
 
 // You need to make your own datapath module and connect everything to the datapath
 // Be careful about whether Reset is active high or low
-datapath d0 (.*);
+datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX));
 
 // Our SRAM and I/O controller
 Mem2IO memory_subsystem(
@@ -98,7 +98,7 @@ tristate #(.N(16)) tr0(
 ISDU state_controller(
     .*, .Reset(Reset_ah), .Run(Run_ah), .Continue(Continue_ah),
     .Opcode(IR[15:12]), .IR_5(IR[5]), .IR_11(IR[11]),
-    .Mem_CE(CE), .Mem_UB(UB), .Mem_LB(LB), .Mem_OE(OE), .Mem_WE(WE)
+    .Mem_CE(CE), .Mem_UB(UB), .Mem_LB(LB), .Mem_OE(OE), .Mem_WE(WE), .GatePC(GatePC)
 );
 
 endmodule

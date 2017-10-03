@@ -35,8 +35,6 @@ initial begin : TEST_VECTORS
 	#4 Continue = 0; 
 	
 	#4 Continue = 1; 
-	
-	#2 Continue = 0;
 			
 end
 endmodule

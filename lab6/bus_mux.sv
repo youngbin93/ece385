@@ -2,7 +2,7 @@ module bus_mux #(parameter N = 8)
 (
 	input logic [N - 1:0] A, B, C, D,
 	output logic [N - 1:0] E,
-	output logic [3:0] select
+	input logic [3:0] select
 );
 
 always_comb 

@@ -2,7 +2,7 @@ module mux8 #(parameter N = 8)
 (
 	input logic [N - 1:0] A, B, C, D, E, F, G, H,
 	output logic [N - 1:0] I,
-	output logic [2:0] select
+	input logic [2:0] select
 );
 always_comb 
 begin
