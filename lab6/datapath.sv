@@ -9,18 +9,12 @@ module datapath
 	input logic  [1:0]  	ADDR2MUX, ALUK,
 	input logic 			MIO_EN,
 	input logic  [15:0]  MDR_In,
-	inout logic  [15:0]  Data,
 	output logic [15:0] 	MAR, IR, PC, MDR
 );
 
 logic [15:0] REG_MDR_OUT, REG_MAR_OUT, REG_IR_OUT, REG_PC_OUT, INC_PC;
 logic [15:0] MDR_MUX_OUT, PC_MUX_OUT;
 wire  [15:0] BUS; 
-//logic [3:0] bus_select;
-//assign bus_select[3] = GatePC;
-//assign bus_select[2] = GateMDR;
-//assign bus_select[1] = GateALU;
-//assign bus_select[0] = GateMARMUX;
 
 /* Datapath Registers */
 register #(.size(16)) REG_MDR

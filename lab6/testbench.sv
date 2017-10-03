@@ -25,16 +25,18 @@ test_slc3 tp(.*, .ADDR(A));
 initial begin : TEST_VECTORS
 
 	
-	Reset = 0;
+	#4 Reset = 0;
 	
 	#4 Reset = 1;
 		Run = 0; 
 	
 	#4 Run = 1;
 	
-	#4 Continue = 0; 
+	#4 Continue = 0;
 	
 	#4 Continue = 1; 
+	
+	#4 Continue = 0;
 			
 end
 endmodule
