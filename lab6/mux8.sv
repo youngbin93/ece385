@@ -1,4 +1,4 @@
-module mux8 #(N = 8)
+module mux8 #(parameter N = 8)
 (
 	input logic [N - 1:0] A, B, C, D, E, F, G, H,
 	output logic [N - 1:0] I,
