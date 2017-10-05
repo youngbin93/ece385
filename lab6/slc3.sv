@@ -79,7 +79,7 @@ assign MIO_EN = ~OE;
 
 // You need to make your own datapath module and connect everything to the datapath
 // Be careful about whether Reset is active high or low
-datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX));
+datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX), .MDR_In(Data));
 
 // Our SRAM and I/O controller
 Mem2IO memory_subsystem(

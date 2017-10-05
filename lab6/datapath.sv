@@ -57,8 +57,8 @@ assign INC_PC = REG_PC_OUT + 16'b000000000001;
 /* Datapath MUXes */ 
 mux2 #(.N(16)) MDR_MUX
 (
-	.A(MDR_In),
-	.B(BUS),
+	.A(BUS),
+	.B(MDR_In),
 	.C(MDR_MUX_OUT),
 	.select(MIO_EN)
 );
