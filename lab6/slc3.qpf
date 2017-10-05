@@ -18,13 +18,13 @@
 #
 # Quartus II 32-bit
 # Version 13.1.4 Build 182 03/12/2014 SJ Full Version
-# Date created = 13:52:12  October 02, 2017
+# Date created = 22:18:29  October 04, 2017
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "13.1"
-DATE = "13:52:12  October 02, 2017"
+DATE = "22:18:29  October 04, 2017"
 
 # Revisions
 
-PROJECT_REVISION = "scl3"
+PROJECT_REVISION = "slc3"
