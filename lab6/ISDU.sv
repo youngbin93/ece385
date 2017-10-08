@@ -172,11 +172,10 @@ module ISDU (   input logic         Clk,
 				S_12 : 
                 Next_state = S_18;
 				S_00 :
-					 Next_state = S_18;
 					 if(BEN)
-					 begin
-						Next_state = S_22;
-					 end 	
+						Next_state = S_22;	
+					 else 
+						Next_state = S_18;
 			   S_22 : 
                 Next_state = S_18;		 
 
