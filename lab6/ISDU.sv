@@ -55,7 +55,7 @@ module ISDU (   input logic         Clk,
                                     Mem_WE
                 );
 
-    enum logic [5:0] {  Halted, 
+    enum logic [4:0] {  Halted, 
                         PauseIR1, 
                         PauseIR2, 
                         S_18, 
@@ -76,7 +76,9 @@ module ISDU (   input logic         Clk,
 								S_16_2,
 								S_04,
 								S_21, 
-								S_12}   State, Next_state;   // Internal state logic
+								S_12,
+								S_00,
+								S_22}   State, Next_state;   // Internal state logic
         
     always_ff @ (posedge Clk)
     begin
@@ -104,9 +106,7 @@ module ISDU (   input logic         Clk,
             S_33_2 : 
                 Next_state = S_35;
             S_35 : 
-                Next_state = PauseIR1;
-            // PauseIR1 and PauseIR2 are only for Week 1 such that TAs can see 
-            // the values in IR.
+                Next_state = S_32;
             PauseIR1 : 
                 if (~Continue) 
                     Next_state = PauseIR1;
@@ -131,8 +131,12 @@ module ISDU (   input logic         Clk,
                         Next_state = S_07;
 						  4'b0100 :
 								Next_state = S_04;
-							4'b1100:
+						  4'b1100:
 								Next_state = S_12;
+						  4'b0000:
+								Next_state = S_00;
+						  4'b1101:
+								Next_state = PauseIR1;
 
                     // You need to finish the rest of opcodes.....
 
@@ -167,6 +171,14 @@ module ISDU (   input logic         Clk,
                 Next_state = S_18;
 				S_12 : 
                 Next_state = S_18;
+				S_00 :
+					 Next_state = S_18;
+					 if(BEN)
+					 begin
+						Next_state = S_22;
+					 end 	
+			   S_22 : 
+                Next_state = S_18;		 
 
             // You need to finish the rest of states.....
 
@@ -294,7 +306,8 @@ module ISDU (   input logic         Clk,
 				S_16_1 :
 					begin 
 							Mem_WE = 1'b0;	
-							GateMDR = 1'b1;
+							GateMDR = 1'b1;				
+            // You need to finish the rest of states.....
 					end
 				S_16_2 :
 					begin 
@@ -322,9 +335,14 @@ module ISDU (   input logic         Clk,
 							GateALU = 1'b1;
 							PCMUX = 2'b10;				
 					end
-				
-
-            // You need to finish the rest of states.....
+				S_00 :;
+				S_22 :
+					begin 
+							LD_PC = 1'b1;
+							PCMUX = 2'b01;
+							ADDR1MUX = 1'b0;
+							ADDR2MUX = 2'b10;
+					end
 
             default : ;
         endcase
