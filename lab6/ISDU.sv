@@ -238,7 +238,7 @@ module ISDU (   input logic         Clk,
             PauseIR1: ;
             PauseIR2: ;
             S_32 : 
-                LD_BEN = 1'b1;
+						  LD_BEN = 1'b1;
             S_01 : 
                 begin 
                     SR2MUX = IR_5;

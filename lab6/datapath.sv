@@ -1,6 +1,6 @@
 module datapath
 (
-	input logic 			Clk,
+	input logic 			Clk, Reset,
 	input logic  [15:0] 	S,
 	input logic 			LD_MAR, LD_MDR, LD_IR, LD_BEN, LD_CC, LD_REG, LD_PC, LD_LED, 
 	input logic 			GatePC, GateMDR, GateALU, GateMARMUX,
@@ -10,7 +10,8 @@ module datapath
 	input logic 			MIO_EN, 
 	output logic BEN,
 	input logic  [15:0]  MDR_In,
-	output logic [15:0] 	MAR, IR, PC, MDR
+	output logic [15:0] 	MAR, IR, PC, MDR,
+	output logic [11:0]  LED
 );
 
 logic [15:0] REG_MDR_OUT, REG_MAR_OUT, REG_IR_OUT, REG_PC_OUT, INC_PC, SR1_OUT, SR2_OUT, SR2_MUX_OUT, ALU_OUT, SEXT5_OUT, SEXT6_OUT, SEXT9_OUT, SEXT11_OUT, ADDR2_MUX_OUT, ADDR1_MUX_OUT, ADDER_OUT;
@@ -18,6 +19,7 @@ logic [15:0] MDR_MUX_OUT, PC_MUX_OUT;
 wire  [15:0] BUS; 
 logic [2:0] SR2, DR_MUX_OUT, SR1_MUX_OUT;
 logic br_enable, REG_BEN_OUT;
+logic [11:0] REG_LED_OUT;
 
 // n, z, p assignments 
 logic n, z, p;
@@ -49,12 +51,14 @@ assign PC = REG_PC_OUT;
 assign INC_PC = REG_PC_OUT + 16'b000000000001;
 assign SR2 = REG_IR_OUT[2:0];
 assign BEN  = REG_BEN_OUT; 
+assign LED = REG_LED_OUT;
 
 /* Datapath Registers */
 register #(.size(16)) REG_MDR
 (
 	.Clk(Clk),
 	.Load(LD_MDR),
+	.Reset(Reset),
 	.in(MDR_MUX_OUT), 
 	.out(REG_MDR_OUT)
 );
@@ -63,6 +67,7 @@ register #(.size(16)) REG_MAR
 (
 	.Clk(Clk),
 	.Load(LD_MAR),
+	.Reset(Reset),
 	.in(BUS), 
 	.out(REG_MAR_OUT)
 );
@@ -71,6 +76,7 @@ register #(.size(16)) REG_IR
 (
 	.Clk(Clk),
 	.Load(LD_IR),
+	.Reset(Reset),
 	.in(BUS), 
 	.out(REG_IR_OUT)
 );
@@ -79,14 +85,25 @@ register #(.size(16)) REG_PC
 (
 	.Clk(Clk),
 	.Load(LD_PC),
+	.Reset(Reset),
 	.in(PC_MUX_OUT), 
 	.out(REG_PC_OUT)
+);
+
+register #(.size(12)) REG_LED
+(
+	.Clk(Clk),
+	.Load(LD_LED),
+	.Reset(Reset),
+	.in(REG_IR_OUT[11:0]), 
+	.out(REG_LED_OUT)
 );
 
 register #(.size(1)) REG_BEN
 (
 	.Clk(Clk),
 	.Load(LD_BEN),
+	.Reset(Reset),
 	.in(br_enable), 
 	.out(REG_BEN_OUT)
 ); 
@@ -167,6 +184,7 @@ REGFILE regfile
 (
 	.Clk(Clk),
 	.LD_REG(LD_REG),
+	.Reset(Reset),
 	.REGFILE_IN(BUS),
 	.SR1(SR1_MUX_OUT),
 	.SR2(SR2),

@@ -2,9 +2,9 @@ import SLC3_2::*;
 
 module REGFILE
 (
-    input logic Clk, LD_REG,
+    input logic Clk, LD_REG, Reset,
     input logic [15:0] REGFILE_IN,
-    input logic [15:0] SR1, SR2, DR,
+    input logic [2:0] SR1, SR2, DR,
     output logic [15:0] SR1_OUT, SR2_OUT
 );
 
@@ -27,6 +27,13 @@ begin
     begin
         data[DR] = REGFILE_IN;
     end
+	 else if(Reset)
+	 begin
+		 for (int i = 0; i < $size(data); i++)
+		 begin
+        data[i] = 16'b0;
+       end
+	 end
 end
 
 always_comb

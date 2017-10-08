@@ -54,16 +54,16 @@ logic [15:0] Data_from_SRAM, Data_to_SRAM;
 logic [3:0][3:0] hex_4;
 
 // For week 1, hexdrivers will display IR
-HexDriver hex_driver3 (IR[15:12], HEX3);
-HexDriver hex_driver2 (IR[11:8], HEX2);
-HexDriver hex_driver1 (IR[7:4], HEX1);
-HexDriver hex_driver0 (IR[3:0], HEX0);
+//HexDriver hex_driver3 (IR[15:12], HEX3);
+//HexDriver hex_driver2 (IR[11:8], HEX2);
+//HexDriver hex_driver1 (IR[7:4], HEX1);
+//HexDriver hex_driver0 (IR[3:0], HEX0);
 
 // For week 2, hexdrivers will be mounted to Mem2IO
-// HexDriver hex_driver3 (hex_4[3][3:0], HEX3);
-// HexDriver hex_driver2 (hex_4[2][3:0], HEX2);
-// HexDriver hex_driver1 (hex_4[1][3:0], HEX1);
-// HexDriver hex_driver0 (hex_4[0][3:0], HEX0);
+ HexDriver hex_driver3 (hex_4[3][3:0], HEX3);
+ HexDriver hex_driver2 (hex_4[2][3:0], HEX2);
+ HexDriver hex_driver1 (hex_4[1][3:0], HEX1);
+ HexDriver hex_driver0 (hex_4[0][3:0], HEX0);
 
 // The other hex display will show PC for both weeks.
 HexDriver hex_driver7 (PC[15:12], HEX7);
@@ -79,7 +79,7 @@ assign MIO_EN = ~OE;
 
 // You need to make your own datapath module and connect everything to the datapath
 // remove MDR_in to connect the real memory module
-datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX), .MDR_In(Data));
+datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX), .Reset(Reset_ah), MDR_In(Data));
 
 // Our SRAM and I/O controller
 Mem2IO memory_subsystem(

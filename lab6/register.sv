@@ -1,6 +1,6 @@
 module register #(parameter size = 16)
 (
-	input logic Clk, Load,
+	input logic Clk, Load, Reset,
 	input logic [size - 1:0] in,
 	output logic [size - 1:0] out
 );
@@ -18,6 +18,11 @@ begin
 	if(Load)
 	begin
 		data = in;
+	end
+	
+	else if(Reset)
+	begin 
+		data = {size{1'b0}};
 	end
 end
 

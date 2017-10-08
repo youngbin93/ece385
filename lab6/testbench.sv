@@ -28,25 +28,35 @@ initial begin : TEST_VECTORS
 	Run = 1;
 	Reset = 1;	
 	
+	/* Test 1 */
+	
 	#4 Reset = 0;
 	
 	#4 Reset = 1;
 	
+	#2 S = 16'b0000000000000011;
+	
 	#2 Run = 0; 
 	
-	#12 Run = 1;
+	#30 Run = 1;
 	
-	#6 Continue = 0;
+	/* Test 2 */
 	
-	#12 Continue = 1; 
+	#4 Reset = 0;
 	
-	#6 Continue = 0;
+	#4 Reset = 1;
 	
-	#12 Continue = 1;
+	#2 S = 16'b0000000000000110;
 	
-	#6 Continue = 0;
+	#4 Run = 0; 
 	
-	#12 Continue = 1; 
+	#4 Run = 1;
+	
+	#4 Continue = 0;
+	
+	#16 S = 16'b0000000000000110;
+	
+	#4 Continue = 1;
 	
 	
 			
