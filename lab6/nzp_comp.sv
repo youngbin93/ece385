@@ -1,7 +1,7 @@
 module nzp_comp 
 (
 	/* nzp comes from cc_out while neg, zero, pos comes from dest */
-	input logic [2:0] IR, 
+	input logic [2:0] nzp, 
 	input logic Clk, LD_CC, n, z, p,
 	output logic br_enable
 );
@@ -32,9 +32,9 @@ end
 // assign branch enable signal no matter what is happening
 always_comb
 begin 
-	if(IR[2] & IR[1] & IR[0])
+	if(nzp[2] & nzp[1] & nzp[0])
 		br_enable = 1;
-	else if((IR[2] && data[2]) ||	(IR[1] && data[1]) || (IR[0] && data[0]))
+	else if((nzp[2] && data[2]) ||	(nzp[1] && data[1]) || (nzp[0] && data[0]))
 		br_enable = 1; 
 	else
 		br_enable = 0;	

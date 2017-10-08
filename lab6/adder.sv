@@ -1,4 +1,4 @@
-module adder
+module ADDER
 (
 	input logic [15:0] A, B, 
 	output logic [15:0] C
