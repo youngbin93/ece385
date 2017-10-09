@@ -38,7 +38,7 @@ initial begin : TEST_VECTORS
 	
 	#2 Run = 0; 
 	
-	#30 Run = 1;
+	#60 Run = 1;
 	
 	/* Test 2 */
 	

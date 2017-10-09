@@ -7,12 +7,12 @@ module test_slc3
 	output logic [19:0] ADDR
 ); 
 
-wire [15:0] Data_Mem;
+wire [15:0] Data;
 logic [19:0]  A; 
 logic CE, UB, LB, OE, WE;
 assign ADDR = A; 
 
-slc3 LC3(.*, .ADDR(A), .Data(Data_Mem));
-test_memory tm(.*, .I_O(Data_Mem));
+slc3 LC3(.*, .ADDR(A));
+test_memory tm(.*, .I_O(Data));
 
 endmodule

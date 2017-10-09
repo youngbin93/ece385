@@ -79,7 +79,7 @@ assign MIO_EN = ~OE;
 
 // You need to make your own datapath module and connect everything to the datapath
 // remove MDR_in to connect the real memory module
-datapath d0 (.*, .GatePC(GatePC), .GateALU(GateALU), .GateMDR(GateMDR), .GateMARMUX(GateMARMUX), .Reset(Reset_ah), .MDR_In(Data));
+datapath d0 (.*, .Reset(Reset_ah));
 
 // Our SRAM and I/O controller
 Mem2IO memory_subsystem(
