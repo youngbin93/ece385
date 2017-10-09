@@ -28,35 +28,50 @@ initial begin : TEST_VECTORS
 	Run = 1;
 	Reset = 1;	
 	
-	/* Test 1 */
+	/* Choose Test 1 */
+	#2 S = 16'b0000000000000011;
 	
 	#4 Reset = 0;
 	
 	#4 Reset = 1;
-	
-	#2 S = 16'b0000000000000011;
+	/* Choose Test 1 */
 	
 	#2 Run = 0; 
 	
-	#60 Run = 1;
+	#40 Run = 1;
 	
-	/* Test 2 */
+	/* Choose Test 2 */
+	#2 S = 16'b0000000000000110;
 	
 	#4 Reset = 0;
 	
 	#4 Reset = 1;
+	/* Choose Test 2 */
 	
-	#2 S = 16'b0000000000000110;
+	#2 Run = 0; 
 	
-	#4 Run = 0; 
+	#30 Run = 1;
 	
-	#4 Run = 1;
+		// Set the switches during the first checkpoint then hit continue
+	#12 S = 16'b1000000000000110;
 	
-	#4 Continue = 0;
+	#2 Continue = 0; 
 	
-	#16 S = 16'b0000000000000110;
+	#12 Continue = 1; 
 	
-	#4 Continue = 1;
+	#12 S = 16'b1100000000000110;
+	
+	#2 Continue = 0; 
+	
+	#12 Continue = 1; 
+	
+	#12 S = 16'b1110000000000110;
+	
+	#2 Continue = 0; 
+	
+	#12 Continue = 1; 
+	
+	
 		
 end
 endmodule
