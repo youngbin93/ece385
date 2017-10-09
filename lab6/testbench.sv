@@ -57,8 +57,6 @@ initial begin : TEST_VECTORS
 	#16 S = 16'b0000000000000110;
 	
 	#4 Continue = 1;
-	
-	
-			
+		
 end
 endmodule
