@@ -28,48 +28,32 @@ initial begin : TEST_VECTORS
 	Run = 1;
 	Reset = 1;	
 	
-	/* Choose Test 1 */
-	#2 S = 16'b0000000000000011;
+	/* Choose Test 3 */
+	#2 S = 11;
 	
 	#4 Reset = 0;
 	
 	#4 Reset = 1;
-	/* Choose Test 1 */
+	/* Choose Test 3 */
 	
 	#2 Run = 0; 
 	
-	#40 Run = 1;
-	
-	/* Choose Test 2 */
-	#2 S = 16'b0000000000000110;
-	
-	#4 Reset = 0;
-	
-	#4 Reset = 1;
-	/* Choose Test 2 */
-	
-	#2 Run = 0; 
-	
-	#30 Run = 1;
-	
-		// Set the switches during the first checkpoint then hit continue
-	#12 S = 16'b1000000000000110;
+	#60 Run = 1;
 	
 	#2 Continue = 0; 
 	
-	#12 Continue = 1; 
+	#2 S = 7;
 	
-	#12 S = 16'b1100000000000110;
+	#2 Continue = 1; 
 	
-	#2 Continue = 0; 
+	#100 Continue = 0; 
 	
-	#12 Continue = 1; 
+	#2 Continue = 1; 
 	
-	#12 S = 16'b1110000000000110;
+
 	
-	#2 Continue = 0; 
-	
-	#12 Continue = 1; 
+
+
 	
 	
 		

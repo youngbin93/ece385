@@ -303,7 +303,6 @@ module ISDU (   input logic         Clk,
 				S_23 :
 					begin 
 							LD_MDR = 1'b1;	
-							Mem_OE = 1'b0;
 							ALUK = 2'b11;
 							GateALU = 1'b1;
 							SR1MUX = 1'b1; 
