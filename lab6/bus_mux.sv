@@ -5,6 +5,7 @@ module bus_mux #(parameter N = 8)
 	input logic [3:0] select
 );
 
+// Bus mux that selects between PC, ALU, MAR and MDR
 always_comb 
 begin
 	if(select[0])

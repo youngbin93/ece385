@@ -99,8 +99,6 @@ module ISDU (   input logic         Clk,
                     Next_state = S_18;                      
             S_18 : 
                 Next_state = S_33_1;
-            // Any states involving SRAM require more than one clock cycles.
-            // The exact number will be discussed in lecture.
             S_33_1 : 
                 Next_state = S_33_2;
             S_33_2 : 
@@ -143,6 +141,7 @@ module ISDU (   input logic         Clk,
                     default : 
                         Next_state = S_18;
                 endcase
+				// All state assignments flow the Updated State Diagram found here: https://wiki.illinois.edu/wiki/download/attachments/645009621/statediagram.png?version=1&modificationDate=1503594416000&
             S_01 : 
                 Next_state = S_18;
 				S_05 : 
@@ -216,6 +215,8 @@ module ISDU (   input logic         Clk,
         // Assign control signals based on current state
         case (State)
             Halted: ;
+				
+				// FETCH states
             S_18 : 
                 begin 
                     GatePC = 1'b1;
@@ -235,17 +236,18 @@ module ISDU (   input logic         Clk,
                     GateMDR = 1'b1;
                     LD_IR = 1'b1;
                 end
+					 
             PauseIR1:
 					begin
 						LD_LED = 1'b1;
 					end
-            PauseIR2: 
-					begin
-						LD_LED = 1'b1;
-					end
+            PauseIR2: ;
+				
+				// DECODE state
             S_32 : 
 						  LD_BEN = 1'b1;
-            S_01 : 
+            // ADD state
+				S_01 : 
                 begin 
                     SR2MUX = IR_5;
                     ALUK = 2'b00;
@@ -253,6 +255,8 @@ module ISDU (   input logic         Clk,
                     LD_REG = 1'b1;
 						  LD_CC = 1'b1;
                 end
+					 
+				// AND state
 				S_05 :
 					begin 
 							SR2MUX = IR_5;
@@ -261,6 +265,7 @@ module ISDU (   input logic         Clk,
 							LD_REG = 1'b1;
 							LD_CC = 1'b1;
 					end
+				// NOT state	
 				S_09 :
 					begin 
 							ALUK = 2'b10;
@@ -268,6 +273,7 @@ module ISDU (   input logic         Clk,
 							LD_REG = 1'b1;
 							LD_CC = 1'b1;
 					end
+				// LDR states
 				S_06 :
 					begin 
 							LD_MAR = 1'b1;
@@ -292,6 +298,8 @@ module ISDU (   input logic         Clk,
 							LD_CC = 1'b1;
 							DRMUX = 1'b0;
 					end
+					
+				// STR states
 				S_07 :
 					begin 
 							LD_MAR = 1'b1;
@@ -311,13 +319,14 @@ module ISDU (   input logic         Clk,
 					begin 
 							Mem_WE = 1'b0;	
 							GateMDR = 1'b1;				
-            // You need to finish the rest of states.....
 					end
 				S_16_2 :
 					begin 
 							Mem_WE = 1'b0;
 							GateMDR = 1'b1;
 					end
+					
+				//JSR states
 				S_04 :
 					begin 
 							GatePC = 1'b1;
@@ -331,6 +340,8 @@ module ISDU (   input logic         Clk,
 							ADDR1MUX = 1'b0;
 							ADDR2MUX = 2'b11;			
 					end
+					
+				//JMP states
 				S_12 :
 					begin 
 							LD_PC = 1'b1;
@@ -339,6 +350,8 @@ module ISDU (   input logic         Clk,
 							GateALU = 1'b1;
 							PCMUX = 2'b10;				
 					end
+					
+				// BR states
 				S_00 :;
 				S_22 :
 					begin 

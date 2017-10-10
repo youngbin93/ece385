@@ -4,6 +4,8 @@ module ALU
 	input logic [15:0] A, B,
 	output logic [15:0] ALU_OUT
 );
+
+// ALU does four operations : ADD, AND, NOT and PassB
 always_comb
 begin
 	if(ALUK == 2'b00)
