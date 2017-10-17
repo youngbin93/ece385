@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 17, 2017 2:07:56 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508267276558</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 17, 2017 4:48:11 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1508276891405</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\alattra2\ece385\lab7\software\lab7_app_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\lab7_soc.sopcinfo</SopcDesignFile>
@@ -869,33 +869,39 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sdram_pll</slaveDescriptor>
+                <slaveDescriptor>accul_reset</slaveDescriptor>
                 <addressRange>0x00000020 - 0x0000002F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>led</slaveDescriptor>
+                <slaveDescriptor>accumulate</slaveDescriptor>
                 <addressRange>0x00000030 - 0x0000003F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x00000048 - 0x0000004F</addressRange>
-                <addressSpan>8</addressSpan>
+                <slaveDescriptor>switches</slaveDescriptor>
+                <addressRange>0x00000040 - 0x0000004F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>switches</slaveDescriptor>
+                <slaveDescriptor>led</slaveDescriptor>
                 <addressRange>0x00000050 - 0x0000005F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>buttons</slaveDescriptor>
+                <slaveDescriptor>sdram_pll</slaveDescriptor>
                 <addressRange>0x00000060 - 0x0000006F</addressRange>
                 <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
+                <addressRange>0x00000078 - 0x0000007F</addressRange>
+                <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

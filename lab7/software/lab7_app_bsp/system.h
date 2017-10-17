@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_qsys_0' in SOPC Builder design 'lab7_soc'
  * SOPC Builder design path: ../../lab7_soc.sopcinfo
  *
- * Generated: Tue Oct 17 13:22:52 CDT 2017
+ * Generated: Tue Oct 17 16:37:13 CDT 2017
  */
 
 /*
@@ -161,30 +161,57 @@
 
 
 /*
- * buttons configuration
+ * accul_reset configuration
  *
  */
 
-#define ALT_MODULE_CLASS_buttons altera_avalon_pio
-#define BUTTONS_BASE 0x60
-#define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
-#define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define BUTTONS_CAPTURE 0
-#define BUTTONS_DATA_WIDTH 4
-#define BUTTONS_DO_TEST_BENCH_WIRING 0
-#define BUTTONS_DRIVEN_SIM_VALUE 0
-#define BUTTONS_EDGE_TYPE "NONE"
-#define BUTTONS_FREQ 50000000
-#define BUTTONS_HAS_IN 1
-#define BUTTONS_HAS_OUT 0
-#define BUTTONS_HAS_TRI 0
-#define BUTTONS_IRQ -1
-#define BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define BUTTONS_IRQ_TYPE "NONE"
-#define BUTTONS_NAME "/dev/buttons"
-#define BUTTONS_RESET_VALUE 0
-#define BUTTONS_SPAN 16
-#define BUTTONS_TYPE "altera_avalon_pio"
+#define ACCUL_RESET_BASE 0x20
+#define ACCUL_RESET_BIT_CLEARING_EDGE_REGISTER 0
+#define ACCUL_RESET_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ACCUL_RESET_CAPTURE 0
+#define ACCUL_RESET_DATA_WIDTH 1
+#define ACCUL_RESET_DO_TEST_BENCH_WIRING 0
+#define ACCUL_RESET_DRIVEN_SIM_VALUE 0
+#define ACCUL_RESET_EDGE_TYPE "NONE"
+#define ACCUL_RESET_FREQ 50000000
+#define ACCUL_RESET_HAS_IN 1
+#define ACCUL_RESET_HAS_OUT 0
+#define ACCUL_RESET_HAS_TRI 0
+#define ACCUL_RESET_IRQ -1
+#define ACCUL_RESET_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ACCUL_RESET_IRQ_TYPE "NONE"
+#define ACCUL_RESET_NAME "/dev/accul_reset"
+#define ACCUL_RESET_RESET_VALUE 0
+#define ACCUL_RESET_SPAN 16
+#define ACCUL_RESET_TYPE "altera_avalon_pio"
+#define ALT_MODULE_CLASS_accul_reset altera_avalon_pio
+
+
+/*
+ * accumulate configuration
+ *
+ */
+
+#define ACCUMULATE_BASE 0x30
+#define ACCUMULATE_BIT_CLEARING_EDGE_REGISTER 0
+#define ACCUMULATE_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ACCUMULATE_CAPTURE 0
+#define ACCUMULATE_DATA_WIDTH 1
+#define ACCUMULATE_DO_TEST_BENCH_WIRING 0
+#define ACCUMULATE_DRIVEN_SIM_VALUE 0
+#define ACCUMULATE_EDGE_TYPE "NONE"
+#define ACCUMULATE_FREQ 50000000
+#define ACCUMULATE_HAS_IN 1
+#define ACCUMULATE_HAS_OUT 0
+#define ACCUMULATE_HAS_TRI 0
+#define ACCUMULATE_IRQ -1
+#define ACCUMULATE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ACCUMULATE_IRQ_TYPE "NONE"
+#define ACCUMULATE_NAME "/dev/accumulate"
+#define ACCUMULATE_RESET_VALUE 0
+#define ACCUMULATE_SPAN 16
+#define ACCUMULATE_TYPE "altera_avalon_pio"
+#define ALT_MODULE_CLASS_accumulate altera_avalon_pio
 
 
 /*
@@ -203,7 +230,7 @@
  */
 
 #define ALT_MODULE_CLASS_led altera_avalon_pio
-#define LED_BASE 0x30
+#define LED_BASE 0x50
 #define LED_BIT_CLEARING_EDGE_REGISTER 0
 #define LED_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LED_CAPTURE 0
@@ -298,7 +325,7 @@
  */
 
 #define ALT_MODULE_CLASS_sdram_pll altpll
-#define SDRAM_PLL_BASE 0x20
+#define SDRAM_PLL_BASE 0x60
 #define SDRAM_PLL_IRQ -1
 #define SDRAM_PLL_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SDRAM_PLL_NAME "/dev/sdram_pll"
@@ -312,7 +339,7 @@
  */
 
 #define ALT_MODULE_CLASS_switches altera_avalon_pio
-#define SWITCHES_BASE 0x50
+#define SWITCHES_BASE 0x40
 #define SWITCHES_BIT_CLEARING_EDGE_REGISTER 0
 #define SWITCHES_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SWITCHES_CAPTURE 0
@@ -339,13 +366,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x48
+#define SYSID_QSYS_0_BASE 0x78
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1508264427
+#define SYSID_QSYS_0_TIMESTAMP 1508275814
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */
