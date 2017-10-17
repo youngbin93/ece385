@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 17, 2017 12:21:55 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1508260915379</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 17, 2017 2:07:56 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1508267276558</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\alattra2\ece385\lab7\software\lab7_app_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\lab7_soc.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_qsys_0</Cpu>
@@ -884,6 +884,18 @@
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
                 <addressRange>0x00000048 - 0x0000004F</addressRange>
                 <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>switches</slaveDescriptor>
+                <addressRange>0x00000050 - 0x0000005F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>buttons</slaveDescriptor>
+                <addressRange>0x00000060 - 0x0000006F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
