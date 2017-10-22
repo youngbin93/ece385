@@ -116,7 +116,6 @@ set_location_assignment PIN_U6 -to DRAM_RAS_N
 set_location_assignment PIN_V6 -to DRAM_WE_N
 set_location_assignment PIN_R24 -to KEY[3]
 set_location_assignment PIN_N21 -to KEY[2]
-set_location_assignment PIN_M23 -to KEY[0]
 set_location_assignment PIN_G21 -to LEDG[7]
 set_location_assignment PIN_G22 -to LEDG[6]
 set_location_assignment PIN_G20 -to LEDG[5]
@@ -128,7 +127,6 @@ set_location_assignment PIN_E21 -to LEDG[0]
 set_global_assignment -name SDC_FILE lab7.sdc
 set_global_assignment -name QIP_FILE lab7_soc/synthesis/lab7_soc.qip
 set_global_assignment -name SYSTEMVERILOG_FILE lab7.sv
-set_location_assignment PIN_AC25 -to switches[8]
 set_location_assignment PIN_AB26 -to switches[7]
 set_location_assignment PIN_AD26 -to switches[6]
 set_location_assignment PIN_AC26 -to switches[5]
