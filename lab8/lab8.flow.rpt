@@ -1,5 +1,5 @@
 Flow report for lab8
-Fri Oct 06 16:15:30 2017
+Sun Oct 22 15:29:15 2017
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -41,22 +41,22 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Fri Oct 06 16:15:27 2017      ;
+; Flow Status                        ; Successful - Sun Oct 22 15:29:09 2017      ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                      ; lab8                                       ;
 ; Top-level Entity Name              ; lab8                                       ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE115F29C7                              ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 142                                        ;
-;     Total combinational functions  ; 141                                        ;
-;     Dedicated logic registers      ; 36                                         ;
-; Total registers                    ; 36                                         ;
-; Total pins                         ; 128                                        ;
+; Total logic elements               ; 3,062 / 114,480 ( 3 % )                    ;
+;     Total combinational functions  ; 2,411 / 114,480 ( 2 % )                    ;
+;     Dedicated logic registers      ; 2,073 / 114,480 ( 2 % )                    ;
+; Total registers                    ; 2192                                       ;
+; Total pins                         ; 128 / 529 ( 24 % )                         ;
 ; Total virtual pins                 ; 0                                          ;
-; Total memory bits                  ; 0                                          ;
-; Embedded Multiplier 9-bit elements ; 4                                          ;
-; Total PLLs                         ; 1                                          ;
+; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )               ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                            ;
+; Total PLLs                         ; 2 / 4 ( 50 % )                             ;
 +------------------------------------+--------------------------------------------+
 
 
@@ -65,68 +65,84 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/06/2017 16:14:57 ;
+; Start date & time ; 10/22/2017 15:27:57 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab8                ;
 +-------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                    ;
-+--------------------------------------+-----------------------------------------------------------+---------------+-----------------+----------------+
-; Assignment Name                      ; Value                                                     ; Default Value ; Entity Name     ; Section Id     ;
-+--------------------------------------+-----------------------------------------------------------+---------------+-----------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 176527415446269.150732449704664                           ; --            ; --              ; --             ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --              ; testbench      ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench                                                 ; --            ; --              ; eda_simulation ;
-; EDA_OUTPUT_DATA_FORMAT               ; None                                                      ; --            ; --              ; eda_simulation ;
-; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                           ; --            ; --              ; eda_simulation ;
-; EDA_TEST_BENCH_FILE                  ; testbench.sv                                              ; --            ; --              ; testbench      ;
-; EDA_TEST_BENCH_MODULE_NAME           ; testbench                                                 ; --            ; --              ; testbench      ;
-; EDA_TEST_BENCH_NAME                  ; testbench                                                 ; --            ; --              ; eda_simulation ;
-; EDA_TEST_BENCH_RUN_SIM_FOR           ; 10000 ns                                                  ; --            ; --              ; testbench      ;
-; MAX_CORE_JUNCTION_TEMP               ; 85                                                        ; --            ; --              ; --             ;
-; MIN_CORE_JUNCTION_TEMP               ; 0                                                         ; --            ; --              ; --             ;
-; MISC_FILE                            ; vga_clk/synthesis/../vga_clk.cmp                          ; --            ; --              ; --             ;
-; MISC_FILE                            ; vga_clk/synthesis/../../vga_clk.qsys                      ; --            ; --              ; --             ;
-; PARTITION_COLOR                      ; 16764057                                                  ; --            ; DE2_115_Default ; Top            ;
-; PARTITION_COLOR                      ; 16764057                                                  ; --            ; --              ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                     ; --            ; DE2_115_Default ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                     ; --            ; --              ; Top            ;
-; PARTITION_NETLIST_TYPE               ; SOURCE                                                    ; --            ; DE2_115_Default ; Top            ;
-; PARTITION_NETLIST_TYPE               ; SOURCE                                                    ; --            ; --              ; Top            ;
-; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                       ; --            ; --              ; --             ;
-; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                     ; --            ; --              ; --             ;
-; SLD_FILE                             ; vga_clk/synthesis/vga_clk.debuginfo                       ; --            ; --              ; --             ;
-; SLD_INFO                             ; QSYS_NAME vga_clk HAS_SOPCINFO 1 GENERATION_ID 1507231446 ; --            ; vga_clk         ; --             ;
-; SOPCINFO_FILE                        ; vga_clk/synthesis/../../vga_clk.sopcinfo                  ; --            ; --              ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                        ; --            ; --              ; --             ;
-+--------------------------------------+-----------------------------------------------------------+---------------+-----------------+----------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                     ;
++--------------------------------------+------------------------------------------------------------+---------------+-----------------+----------------+
+; Assignment Name                      ; Value                                                      ; Default Value ; Entity Name     ; Section Id     ;
++--------------------------------------+------------------------------------------------------------+---------------+-----------------+----------------+
+; COMPILER_SIGNATURE_ID                ; 176527415529071.150870407709676                            ; --            ; --              ; --             ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                         ; --            ; --              ; testbench      ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench                                                  ; --            ; --              ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT               ; None                                                       ; --            ; --              ; eda_simulation ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                            ; --            ; --              ; eda_simulation ;
+; EDA_TEST_BENCH_FILE                  ; testbench.sv                                               ; --            ; --              ; testbench      ;
+; EDA_TEST_BENCH_MODULE_NAME           ; testbench                                                  ; --            ; --              ; testbench      ;
+; EDA_TEST_BENCH_NAME                  ; testbench                                                  ; --            ; --              ; eda_simulation ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 10000 ns                                                   ; --            ; --              ; testbench      ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                                         ; --            ; --              ; --             ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                                          ; --            ; --              ; --             ;
+; MISC_FILE                            ; lab8_soc/synthesis/../lab8_soc.cmp                         ; --            ; --              ; --             ;
+; MISC_FILE                            ; lab8_soc/synthesis/../../lab8_soc.qsys                     ; --            ; --              ; --             ;
+; MISC_FILE                            ; vga_clk/synthesis/../vga_clk.cmp                           ; --            ; --              ; --             ;
+; MISC_FILE                            ; vga_clk/synthesis/../../vga_clk.qsys                       ; --            ; --              ; --             ;
+; PARTITION_COLOR                      ; 16764057                                                   ; --            ; DE2_115_Default ; Top            ;
+; PARTITION_COLOR                      ; 16764057                                                   ; --            ; --              ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                      ; --            ; DE2_115_Default ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                      ; --            ; --              ; Top            ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                                                     ; --            ; DE2_115_Default ; Top            ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                                                     ; --            ; --              ; Top            ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                        ; --            ; --              ; --             ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                      ; --            ; --              ; --             ;
+; SLD_FILE                             ; lab8_soc/synthesis/lab8_soc.regmap                         ; --            ; --              ; --             ;
+; SLD_FILE                             ; lab8_soc/synthesis/lab8_soc.debuginfo                      ; --            ; --              ; --             ;
+; SLD_FILE                             ; vga_clk/synthesis/vga_clk.debuginfo                        ; --            ; --              ; --             ;
+; SLD_INFO                             ; QSYS_NAME lab8_soc HAS_SOPCINFO 1 GENERATION_ID 1508702477 ; --            ; lab8_soc        ; --             ;
+; SLD_INFO                             ; QSYS_NAME vga_clk HAS_SOPCINFO 1 GENERATION_ID 1507231446  ; --            ; vga_clk         ; --             ;
+; SOPCINFO_FILE                        ; lab8_soc/synthesis/../../lab8_soc.sopcinfo                 ; --            ; --              ; --             ;
+; SOPCINFO_FILE                        ; vga_clk/synthesis/../../vga_clk.sopcinfo                   ; --            ; --              ; --             ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                         ; --            ; --              ; --             ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                         ; --            ; --              ; --             ;
++--------------------------------------+------------------------------------------------------------+---------------+-----------------+----------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                        ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 654 MB              ; 00:00:19                           ;
-; Total                ; 00:00:19     ; --                      ; --                  ; 00:00:19                           ;
-+----------------------+--------------+-------------------------+---------------------+------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:27     ; 1.0                     ; 843 MB              ; 00:00:45                           ;
+; Fitter                    ; 00:00:33     ; 1.0                     ; 1207 MB             ; 00:00:33                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 635 MB              ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 807 MB              ; 00:00:04                           ;
+; Total                     ; 00:01:10     ; --                      ; --                  ; 00:01:26                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------+
-; Flow OS Summary                                                                   ;
-+----------------------+------------------+-----------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
-+----------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis ; ECEB-4072-06     ; Windows 7 ; 6.1        ; x86_64         ;
-+----------------------+------------------+-----------+------------+----------------+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; ECEB-4072-05     ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; ECEB-4072-05     ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; ECEB-4072-05     ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; ECEB-4072-05     ; Windows 7 ; 6.1        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off lab8 -c lab8
+quartus_fit --read_settings_files=off --write_settings_files=off lab8 -c lab8
+quartus_asm --read_settings_files=off --write_settings_files=off lab8 -c lab8
+quartus_sta lab8 -c lab8
 
 
 

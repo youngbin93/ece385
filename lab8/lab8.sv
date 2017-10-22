@@ -79,7 +79,7 @@ module lab8( input               CLOCK_50,
     );
      
      // You need to make sure that the port names here match the ports in Qsys-generated codes.
-     nios_system nios_system(
+     lab8_soc nios_system(
                              .clk_clk(Clk),         
                              .reset_reset_n(1'b1),    // Never reset NIOS
                              .sdram_wire_addr(DRAM_ADDR), 
@@ -91,7 +91,7 @@ module lab8( input               CLOCK_50,
                              .sdram_wire_dqm(DRAM_DQM),  
                              .sdram_wire_ras_n(DRAM_RAS_N),
                              .sdram_wire_we_n(DRAM_WE_N), 
-                             .sdram_out_clk(DRAM_CLK),
+                             .sdram_clk_clk(DRAM_CLK),
                              .keycode_export(keycode),  
                              .otg_hpi_address_export(hpi_addr),
                              .otg_hpi_data_in_port(hpi_data_in),
