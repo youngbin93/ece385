@@ -23,12 +23,12 @@ always_ff @ (posedge Clk)
 begin
     if(Reset)
     begin
-        from_sw_data_out_buffer <= {16{1'bZ}};
+        from_sw_data_out_buffer <= 0;
         OTG_ADDR                <= 0;
         OTG_RD_N                <= 1;
         OTG_WR_N                <= 1;
         OTG_CS_N                <= 1;
-        from_sw_data_in         <= {16{1'bZ}};
+        from_sw_data_in         <= 0;
     end
     else 
     begin
