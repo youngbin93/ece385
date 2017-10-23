@@ -1,8 +1,3 @@
-PLL_Name	lab8_soc:nios_system|lab8_soc_sdram_pll:sdram_pll|lab8_soc_sdram_pll_altpll_lqa2:sd1|pll7
-PLLJITTER	35
-PLLSPEmax	84
-PLLSPEmin	-53
-
 PLL_Name	vga_clk:vga_clk_instance|vga_clk_altpll_0:altpll_0|vga_clk_altpll_0_altpll_m342:sd1|pll7
 PLLJITTER	30
 PLLSPEmax	84

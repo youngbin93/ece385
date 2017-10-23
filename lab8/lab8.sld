@@ -2,7 +2,7 @@
   <sld_infos>
     <sld_info hpath="lab8_soc:nios_system" name="nios_system">
       <assignment_values>
-        <assignment_value text="QSYS_NAME lab8_soc HAS_SOPCINFO 1 GENERATION_ID 1508702477"/>
+        <assignment_value text="QSYS_NAME lab8_soc HAS_SOPCINFO 1 GENERATION_ID 1508773570"/>
       </assignment_values>
     </sld_info>
     <sld_info hpath="vga_clk:vga_clk_instance" name="vga_clk_instance">
