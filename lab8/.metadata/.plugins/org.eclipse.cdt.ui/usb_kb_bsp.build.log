@@ -1,6 +1,6 @@
-10:56:17 **** Build of configuration Nios II for project usb_kb_bsp ****
+18:19:05 **** Incremental Build of configuration Nios II for project usb_kb_bsp ****
 make all 
 [BSP build complete]
 
-10:56:17 Build Finished (took 425ms)
+18:19:06 Build Finished (took 476ms)
 
