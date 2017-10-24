@@ -1017,3 +1017,16 @@ Binding(CTRL+SHIFT+T,
 
 !ENTRY com.altera.sbtgui.launch 1 0 2017-10-24 10:13:58.136
 !MESSAGE Executing: [C:/altera/15.0/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x98 --id=0x0 --timestamp=1508773570 /cygdrive/c/Users/fisiaka2/ece385/lab8/software/usb_kb/usb_kb.elf]
+!SESSION 2017-10-24 10:36:47.438 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/altera/15.0/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/altera/15.0/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY com.altera.sbtgui.launch 1 0 2017-10-24 10:38:04.902
+!MESSAGE Executing: [C:/altera/15.0/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x98 --id=0x0 --timestamp=1508773570]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2017-10-24 10:38:06.892
+!MESSAGE Executing: [C:/altera/15.0/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x98 --id=0x0 --timestamp=1508773570 /cygdrive/c/Users/fisiaka2/ece385/lab8/software/usb_kb/usb_kb.elf]

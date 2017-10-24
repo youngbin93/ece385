@@ -13,7 +13,6 @@
 //    UIUC ECE Department                                                --
 //-------------------------------------------------------------------------
 
-
 module  ball ( input         Clk,                // 50 MHz clock
                              Reset,              // Active-high reset signal
                              frame_clk,          // The clock indicating a new frame (~60Hz)
@@ -40,6 +39,13 @@ module  ball ( input         Clk,                // 50 MHz clock
     assign DistX = DrawX - Ball_X_Pos;
     assign DistY = DrawY - Ball_Y_Pos;
     assign Size = Ball_Size;
+	 
+	 /* Keycodes */
+	 int W, A, S, D;
+	 assign W = 26;
+	 assign A = 4;
+	 assign S = 22;
+	 assign D = 7;
     
     //////// Do not modify the always_ff blocks. ////////
     // Detect rising edge of frame_clk
@@ -88,8 +94,14 @@ module  ball ( input         Clk,                // 50 MHz clock
             Ball_Y_Motion_in = (~(Ball_Y_Step) + 1'b1);  // 2's complement.  
         else if ( Ball_Y_Pos <= Ball_Y_Min + Ball_Size )  // Ball is at the top edge, BOUNCE!
             Ball_Y_Motion_in = Ball_Y_Step;
+		  else if( Ball_X_Pos + Ball_Size >= Ball_X_Max )  // Ball is at the right edge, BOUNCE!
+            Ball_X_Motion_in = (~(Ball_X_Step) + 1'b1);   
+        else if ( Ball_X_Pos <= Ball_X_Min + Ball_Size )  // Ball is at the left edge, BOUNCE!
+            Ball_X_Motion_in = Ball_X_Step;
         
         // TODO: Add other boundary conditions and handle keypress here.
+		  
+		  
         
     /**************************************************************************************
         ATTENTION! Please answer the following quesiton in your lab report! Points will be allocated for the answers!
