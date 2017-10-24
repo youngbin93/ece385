@@ -16,7 +16,7 @@ logic [15:0] from_sw_data_out_buffer;
 // TODO: Fill in the blanks below. 
 // OTG_DATA should be high Z (tristated) when NIOS is not writing to OTG_DATA inout bus.
 // Look at tristate.sv in lab 6 for an example.
-assign OTG_DATA = from_sw_w ? from_sw_data_out_buffer : {16{1'bZ}};
+assign OTG_DATA = ~from_sw_w ? from_sw_data_out_buffer : {16{1'bZ}};
 assign OTG_RST_N = ~Reset;
 
 always_ff @ (posedge Clk)

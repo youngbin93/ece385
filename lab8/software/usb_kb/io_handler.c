@@ -29,16 +29,14 @@ void IO_write(alt_u8 Address, alt_u16 Data)
 		/* specify where to write from */
 		*otg_hpi_address = Address;
 		*otg_hpi_cs = 0;
-		*otg_hpi_r = 1;
 		*otg_hpi_w = 0;
 
 		/* write the data */
 		*otg_hpi_data = Data;
 
 		/* Turn off all the signals */
-		*otg_hpi_cs = 1;
-		*otg_hpi_r = 1;
 		*otg_hpi_w = 1;
+		*otg_hpi_cs = 1;
 }
 
 /*
@@ -53,15 +51,13 @@ alt_u16 IO_read(alt_u8 Address)
 	*otg_hpi_address = Address;
 	*otg_hpi_cs = 0;
 	*otg_hpi_r = 0;
-	*otg_hpi_w = 1;
 
 	/* grab the data that was read */
 	temp = *otg_hpi_data;
 
 	/* Turn off all the signals */
-	*otg_hpi_cs = 1;
 	*otg_hpi_r = 1;
-	*otg_hpi_w = 1;
+	*otg_hpi_cs = 1;
 
 	//printf("%x\n",temp);
 	return temp;

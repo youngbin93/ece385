@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_qsys_0' in SOPC Builder design 'lab8_soc'
 # SOPC Builder design path: ../../lab8_soc.sopcinfo
 #
-# Generated: Mon Oct 23 17:45:55 CDT 2017
+# Generated: Tue Oct 24 09:15:21 CDT 2017
 
 # DO NOT MODIFY THIS FILE
 #
