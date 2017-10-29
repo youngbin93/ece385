@@ -58,16 +58,101 @@ char charsToHex(char c1, char c2)
 	return (hex1 << 4) + hex2;
 }
 
+/** SubWord
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+ void SubWord(unsigned long * state)
+{
+	return;
+}
+
+/** RotWord
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+ void RotWord(unsigned long * state)
+{
+	return;
+}
+
+/** KeyExpansion
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+ void KeyExpansion(unsigned long * state)
+{
+	return;
+}
+
+
+/** AddRoundKey
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+void AddRoundKey(unsigned long * state)
+{
+	return;
+}
+
+/** SubBytes
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+void SubBytes(unsigned long * state)
+{
+	return;
+}
+
+/** ShiftRows
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+void ShiftRows(unsigned long * state)
+{
+	return;
+}
+
+/** MixColumns
+ *  
+ *  
+ *  
+ *  input: 
+ *  output: 
+ */
+void MixColumns(unsigned long * state)
+{
+	return;
+}
+
 // Perform AES Encryption in Software
 void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned long * state, unsigned long * key)
 {
-
+	return;
 }
 
 // Perform AES Decryption in Hardware
 void decrypt(unsigned long * state, unsigned long * key)
 {
-
+	return;
 }
 
 int main()
