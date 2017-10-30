@@ -5,6 +5,7 @@
 #define uint unsigned long // 32-bit word
 #define Nb 4
 #define Nr 11
+#define Nk 4
 
 // This is the specified AES SBox.
 const uchar aes_sbox[256] = {

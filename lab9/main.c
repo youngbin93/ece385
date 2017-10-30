@@ -65,21 +65,22 @@ char charsToHex(char c1, char c2)
  *  input: 
  *  output: 
  */
- void SubWord(unsigned long * state)
+unsigned long SubWord(unsigned long word)
 {
-	return;
+	return 0;
 }
 
 /** RotWord
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: a 32-bit word
+ *  output: a cyclically left rotation of the word
  */
- void RotWord(unsigned long * state)
+unsigned long RotWord(unsigned long word)
 {
-	return;
+	byte_mask = 0x000000FF;
+	return ((word >> 16) & byte_mask) | ((word >> 8) & byte_mask) | ((word) & byte_mask) | ((word >> 24) & byte_mask);
 }
 
 /** KeyExpansion
@@ -89,9 +90,48 @@ char charsToHex(char c1, char c2)
  *  input: 
  *  output: 
  */
- void KeyExpansion(unsigned long * state, unsigned char * key_schedule)
+ void KeyExpansion(unsigned long * key, unsigned char * key_schedule)
 {
-	return;
+	/* Create a copy of the key array that allows byte indexing */
+	unsigned char key_bytes[16];
+	byte_mask = 0x000000FF
+	for (int i = 0; i < 16 ; i ++) 
+	{
+		int key_index = i/4;
+		int byte_index = i % 4;
+		key_bytes[i] = (unsigned char)(byte_mask & (key[key_index] >> (24 - (8 * (byte_index)))));
+	}
+	
+	/* Begin Key Expansion algorithm */
+	unsigned long temp = 0;
+	i = 0; 
+	
+	while (i < Nk)
+	{
+		key_schedule[4*i] = key_bytes[4*i] ;
+		key_schedule[4*i+1] = key_bytes[4*i+1] ;
+		key_schedule[4*i+2] = key_bytes[4*i+2] ;
+		key_schedule[4*i+3] = key_bytes[4*i+3] ;
+		i++; 
+	}
+	
+	i = Nk; 
+	
+	while(i < Nb * (Nr + 1))
+	{
+		temp = ((unsigned int)key_schedule[i - 4] << 24) | ((unsigned int)key_schedule[i - 3] << 16) | ((unsigned int)key_schedule[i - 2] << 8) | ((unsigned int)key_schedule[i - 1]);
+		
+		if(i % Nk == 0)
+		{
+			temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk];
+		}
+		
+		key_schedule[4*i] = key_schedule  [(4*i)- Nk]   ^ (temp >> 24);
+		key_schedule[4*i+1] = key_schedule[(4*i+1)- Nk] ^ (temp >> 16);
+		key_schedule[4*i+2] = key_schedule[(4*i+2)- Nk] ^ (temp >> 8);
+		key_schedule[4*i+3] = key_schedule[(4*i+3)- Nk] ^ (temp);
+		i++;
+	}
 }
 
 
@@ -166,7 +206,7 @@ void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned lo
 	
 	/* Get the Key Schedule */
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
-	KeyExpansion(state, key_schedule);
+	KeyExpansion(key, key_schedule);
 	
 	/* Add the first round key */
 	AddRoundKey(state, 0, key_schedule);
