@@ -67,7 +67,20 @@ char charsToHex(char c1, char c2)
  */
 unsigned long SubWord(unsigned long word)
 {
-	return 0;
+	unsigned char i, j;
+	hbyte_mask = 0x0000000F;
+	byte_mask = 0x000000FF;
+	unsigned long new_word = 0;
+	
+	int k = 0; 
+	while(k < 4)
+	{
+		i = ((word >> (k * 8)) & hbyte_mask);
+		j = ((word >> (k * 8 + 4)) & hbyte_mask);
+		new_word = new_word | (((unsigned long) aes_sbox[i*16 + j] & byte_mask) << (k * 8));
+		k++;
+	}
+	return new_word;
 }
 
 /** RotWord
