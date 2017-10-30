@@ -75,8 +75,8 @@ unsigned long SubWord(unsigned long word)
 	int k = 0; 
 	while(k < 4)
 	{
-		i = ((word >> (k * 8)) & hbyte_mask);
-		j = ((word >> (k * 8 + 4)) & hbyte_mask);
+		i = (unsigned char) ((word >> (k * 8)) & hbyte_mask);
+		j = (unsigned char) ((word >> (k * 8 + 4)) & hbyte_mask);
 		new_word = new_word | (((unsigned long) aes_sbox[i*16 + j] & byte_mask) << (k * 8));
 		k++;
 	}
@@ -132,7 +132,7 @@ unsigned long RotWord(unsigned long word)
 	
 	while(i < Nb * (Nr + 1))
 	{
-		temp = ((unsigned int)key_schedule[i - 4] << 24) | ((unsigned int)key_schedule[i - 3] << 16) | ((unsigned int)key_schedule[i - 2] << 8) | ((unsigned int)key_schedule[i - 1]);
+		temp = ((unsigned long)key_schedule[i - 4] << 24) | ((unsigned long)key_schedule[i - 3] << 16) | ((unsigned long)key_schedule[i - 2] << 8) | ((unsigned long)key_schedule[i - 1]);
 		
 		if(i % Nk == 0)
 		{
