@@ -89,7 +89,7 @@ char charsToHex(char c1, char c2)
  *  input: 
  *  output: 
  */
- void KeyExpansion(unsigned long * state)
+ void KeyExpansion(unsigned long * state, unsigned char * key_schedule)
 {
 	return;
 }
@@ -102,7 +102,7 @@ char charsToHex(char c1, char c2)
  *  input: 
  *  output: 
  */
-void AddRoundKey(unsigned long * state)
+void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 {
 	return;
 }
@@ -146,7 +146,44 @@ void MixColumns(unsigned long * state)
 // Perform AES Encryption in Software
 void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned long * state, unsigned long * key)
 {
-	return;
+	/* clear the state and key arrays */
+	for (int i = 0; i < 4 ; i ++) 
+	{
+		state[i] = 0;
+		key[i] = 0;
+	}
+	
+	/* Set the state and the key values */
+	for (int i = 0; i <= 30; i = i + 2) 
+	{
+		int word = i/8; 
+		char state_hex = charsToHex(plaintext_asc[i], plaintext_asc[i + 1]);
+		char key_hex = charsToHex(key_asc[i], key_asc[i + 1]);
+		
+		state[word] = (state[word] << 8) | state_hex; 
+		key[word] = (key[word] << 8) | key_hex; 
+	}
+	
+	/* Get the Key Schedule */
+	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
+	KeyExpansion(state, key_schedule);
+	
+	/* Add the first round key */
+	AddRoundKey(state, 0, key_schedule);
+	
+	/* Perform nine full rounds of AES algorithm */
+	for (int round = 1; round < Nr; round++) 
+	{
+		SubBytes(state);
+		ShiftRows(state);
+		MixColumns(state);
+		AddRoundKey(state, round, key_schedule);
+	}
+	
+	/* Perform final round of AES algorithm */
+	SubBytes(state);
+	ShiftRows(state);
+	AddRoundKey(state, Nr, key_schedule);
 }
 
 // Perform AES Decryption in Hardware
