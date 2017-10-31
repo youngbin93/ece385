@@ -228,7 +228,7 @@ void ShiftRows(unsigned long * state)
 	state[3] = (~MASK_3 & state[3]) | (word_3_2);
 }
 
-/* Mix Columns helper fucntion */
+/* Mix Columns helper function */
 unsigned char xtime(unsigned long byte)
 {
 	unsigned char ans = byte << 1;
