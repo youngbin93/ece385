@@ -62,8 +62,8 @@ char charsToHex(char c1, char c2)
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: word to substituted 
+ *  output: substituted word
  */
 unsigned long SubWord(unsigned long word)
 {
@@ -87,7 +87,7 @@ unsigned long SubWord(unsigned long word)
  *  
  *  
  *  
- *  input: a 32-bit word
+ *  input: a 32-bit word to rotate 
  *  output: a cyclically left rotation of the word
  */
 unsigned long RotWord(unsigned long word)
@@ -100,8 +100,8 @@ unsigned long RotWord(unsigned long word)
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: pointer to the key array to expand, pointer to the array to store expansion
+ *  output: none
  */
  void KeyExpansion(unsigned long * key, unsigned char * key_schedule)
 {
@@ -151,8 +151,8 @@ unsigned long RotWord(unsigned long word)
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: pointer to the state array, round number and pointer to the key schedule
+ *  output: none
  */
 void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 {
@@ -174,8 +174,8 @@ void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: pointer to the state array
+ *  output: none
  */
 void SubBytes(unsigned long * state)
 {
@@ -189,12 +189,48 @@ void SubBytes(unsigned long * state)
  *  
  *  
  *  
- *  input: 
- *  output: 
+ *  input: pointer to the state array
+ *  output: none 
  */
 void ShiftRows(unsigned long * state)
 {
-	return;
+	unsigned long mask_0 = 0xFF000000;
+	unsigned long mask_1 = 0x00FF0000;
+	unsigned long mask_2 = 0x0000FF00;
+	unsigned long mask_3 = 0x000000FF;
+
+	unsigned long word_1_0 = (state[1] & mask_0) >> 24;
+	unsigned long word_1_1 = (state[1] & mask_1) >> 16;
+	unsigned long word_1_2 = (state[1] & mask_2) >> 8;
+	unsigned long word_1_3 = (state[1] & mask_3);
+
+	unsigned long word_2_0 = (state[2] & mask_0) >> 24;
+	unsigned long word_2_1 = (state[2] & mask_1) >> 16;
+	unsigned long word_2_2 = (state[2] & mask_2) >> 8;
+	unsigned long word_2_3 = (state[2] & mask_3);
+
+	unsigned long word_3_0 = (state[3] & mask_0) >> 24;
+	unsigned long word_3_1 = (state[3] & mask_1) >> 16;
+	unsigned long word_3_2 = (state[3] & mask_2) >> 8;
+	unsigned long word_3_3 = (state[3] & mask_3);
+
+	/* Second row gets one shift */
+	state[0] = (~mask_1 & state[0]) | (word_1_1 << 16);
+	state[1] = (~mask_1 & state[1]) | (word_1_2 << 16);
+	state[2] = (~mask_1 & state[2]) | (word_1_3 << 16);
+	state[3] = (~mask_1 & state[3]) | (word_1_0 << 16);
+
+	/* Third row gets two shifts */
+	state[0] = (~mask_2 & state[0]) | (word_2_2 << 8);
+	state[1] = (~mask_2 & state[1]) | (word_2_3 << 8);
+	state[2] = (~mask_2 & state[2]) | (word_2_0 << 8);
+	state[3] = (~mask_2 & state[3]) | (word_2_1 << 8);
+
+	/* Fourth row gets three shifts */
+	state[0] = (~mask_3 & state[0]) | (word_3_3);
+	state[1] = (~mask_3 & state[1]) | (word_3_0);
+	state[2] = (~mask_3 & state[2]) | (word_3_1);
+	state[3] = (~mask_3 & state[3]) | (word_3_2);
 }
 
 /** MixColumns
