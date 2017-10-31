@@ -73,8 +73,8 @@ unsigned long SubWord(unsigned long word)
 	int k = 0; 
 	while(k < 4)
 	{
-		i = (unsigned char) ((word >> (k * 8)) & MASK_4);
-		j = (unsigned char) ((word >> (k * 8 + 4)) & MASK_4);
+		j = (unsigned char) ((word >> (k * 8)) & MASK_4);
+		i = (unsigned char) ((word >> (k * 8 + 4)) & MASK_4);
 		new_word = new_word | (((unsigned long) aes_sbox[i*16 + j] & MASK_3) << (k * 8));
 		k++;
 	}
@@ -89,8 +89,9 @@ unsigned long SubWord(unsigned long word)
  *  output: a cyclically left rotation of the word
  */
 unsigned long RotWord(unsigned long word)
-{
-	return ((word >> 16) & MASK_3) | ((word >> 8) & MASK_3) | ((word) & MASK_3) | ((word >> 24) & MASK_3);
+{	
+	unsigned long first_byte = (MASK_0 & word) >> 24;
+	return ((word & ~MASK_0) << 8) | first_byte;
 }
 
 /** KeyExpansion
@@ -125,20 +126,20 @@ unsigned long RotWord(unsigned long word)
 	}
 	
 	i = Nk; 
-	
+	int j = 0; 
 	while(i < Nb * (Nr + 1))
 	{
-		temp = ((unsigned long)key_schedule[i - 4] << 24) | ((unsigned long)key_schedule[i - 3] << 16) | ((unsigned long)key_schedule[i - 2] << 8) | ((unsigned long)key_schedule[i - 1]);
-		
+		temp = ((unsigned long)key_schedule[4*i - 4] << 24) | ((unsigned long)key_schedule[4*i - 3] << 16) | ((unsigned long)key_schedule[4*i - 2] << 8) | ((unsigned long)key_schedule[4*i - 1]);
 		if(i % Nk == 0)
 		{
+			unsigned long temp2 = RotWord(temp);
 			temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk];
 		}
 		
-		key_schedule[4*i] = key_schedule  [(4*i)- Nk]   ^ (temp >> 24);
-		key_schedule[4*i+1] = key_schedule[(4*i+1)- Nk] ^ (temp >> 16);
-		key_schedule[4*i+2] = key_schedule[(4*i+2)- Nk] ^ (temp >> 8);
-		key_schedule[4*i+3] = key_schedule[(4*i+3)- Nk] ^ (temp);
+		key_schedule[4*i]   = key_schedule[(4*(i-Nk))] ^ (temp >> 24);
+		key_schedule[4*i+1] = key_schedule[(4*(i-Nk)) + 1] ^ (temp >> 16);
+		key_schedule[4*i+2] = key_schedule[(4*(i-Nk)) + 2] ^ (temp >> 8);
+		key_schedule[4*i+3] = key_schedule[(4*(i-Nk)) + 3] ^ (temp);
 		i++;
 	}
 }
@@ -258,6 +259,30 @@ void MixColumns(unsigned long * state)
 	}
 }
 
+void test()
+{
+	/* Get the Key Schedule */
+	unsigned long key[4]=
+	{
+		0x00010203,
+		0x04050607,
+		0x08090A0B,
+		0x0C0D0E0F
+	};
+	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
+	KeyExpansion(key, key_schedule);
+
+	printf("KEY EXPANSION: \n");
+	for(int i = 0; i < 44; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			printf("%02X ", key_schedule[i*4 + j]);
+		}
+		printf("\n");
+	}
+}
+
 // Perform AES Encryption in Software
 void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned long * state, unsigned long * key)
 {
@@ -282,6 +307,16 @@ void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned lo
 	/* Get the Key Schedule */
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
 	KeyExpansion(key, key_schedule);
+
+	printf("KEY EXPANSION: \n");
+	for(int i = 0; i < 11; i++)
+	{
+		for(int j = 0; j < 16; j++)
+		{
+			printf("%02X ", key_schedule[i*16 + j]);
+		}
+		printf("\n");
+	}
 	
 	/* Add the first round key */
 	AddRoundKey(state, 0, key_schedule);
@@ -316,55 +351,56 @@ int main()
 	unsigned long state[4];
 	unsigned long key[4];
 
-	printf("Select execution mode: 0 for testing, 1 for benchmarking: ");
-	scanf("%d", &run_mode);
+	test();
+	// printf("Select execution mode: 0 for testing, 1 for benchmarking: ");
+	// scanf("%d", &run_mode);
 
-	if (run_mode == 0) {
-		while (1) {
-			int i = 0;
-			printf("\nEnter plain text:\n");
-			scanf("%s", plaintext_asc);
-			printf("\n");
-			printf("\nEnter key:\n");
-			scanf("%s", key_asc);
-			printf("\n");
-			encrypt(plaintext_asc, key_asc, state, key);
-			printf("\nEncrpted message is: \n");
-			for(i = 0; i < 4; i++){
-				printf("%08lX\n", state[i]);
-			}
-			decrypt(state, key);
-			printf("\nDecrypted message is: \n");
-			for(i = 0; i < 4; i++){
-				printf("%08lX\n", state[i]);
-			}
-		}
-	}
-	else {
-		int i = 0;
-		int size_KB = 1;
-		for (i = 0; i < 32; i++) {
-			plaintext_asc[i] = 'a';
-			key_asc[i] = 'b';
-		}
+	// if (run_mode == 0) {
+	// 	while (1) {
+	// 		int i = 0;
+	// 		printf("\nEnter plain text:\n");
+	// 		scanf("%s", plaintext_asc);
+	// 		printf("\n");
+	// 		printf("\nEnter key:\n");
+	// 		scanf("%s", key_asc);
+	// 		printf("\n");
+	// 		encrypt(plaintext_asc, key_asc, state, key);
+	// 		printf("\nEncrpted message is: \n");
+	// 		for(i = 0; i < 4; i++){
+	// 			printf("%08lX\n", state[i]);
+	// 		}
+	// 		decrypt(state, key);
+	// 		printf("\nDecrypted message is: \n");
+	// 		for(i = 0; i < 4; i++){
+	// 			printf("%08lX\n", state[i]);
+	// 		}
+	// 	}
+	// }
+	// else {
+	// 	int i = 0;
+	// 	int size_KB = 1;
+	// 	for (i = 0; i < 32; i++) {
+	// 		plaintext_asc[i] = 'a';
+	// 		key_asc[i] = 'b';
+	// 	}
 
-		clock_t begin = clock();
-		for (i = 0; i < size_KB * 128; i++)
-			encrypt(plaintext_asc, key_asc, state, key);
-		clock_t end = clock();
-		double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-		double speed = size_KB / time_spent;
+	// 	clock_t begin = clock();
+	// 	for (i = 0; i < size_KB * 128; i++)
+	// 		encrypt(plaintext_asc, key_asc, state, key);
+	// 	clock_t end = clock();
+	// 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	// 	double speed = size_KB / time_spent;
 
-		printf("Software Encryption Speed: %f KB/s \n", speed);
+	// 	printf("Software Encryption Speed: %f KB/s \n", speed);
 
-		begin = clock();
-		for (i = 0; i < size_KB * 128; i++)
-			decrypt(state, key);
-		end = clock();
-		time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-		speed = size_KB / time_spent;
+	// 	begin = clock();
+	// 	for (i = 0; i < size_KB * 128; i++)
+	// 		decrypt(state, key);
+	// 	end = clock();
+	// 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	// 	speed = size_KB / time_spent;
 
-		printf("Hardware Encryption Speed: %f KB/s \n", speed);
-	}
+	// 	printf("Hardware Encryption Speed: %f KB/s \n", speed);
+	// }
 	return 0;
 }
