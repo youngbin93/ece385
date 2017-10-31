@@ -363,18 +363,18 @@ void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned lo
 		state[i] = 0;
 		key[i] = 0;
 	}
-	
+
 	/* Set the state and the key values */
 	for (int i = 0; i <= 30; i = i + 2) 
 	{
 		int word = i/8; 
-		char state_hex = charsToHex(plaintext_asc[i], plaintext_asc[i + 1]);
-		char key_hex = charsToHex(key_asc[i], key_asc[i + 1]);
+		unsigned char state_hex = (unsigned char) charsToHex(plaintext_asc[i], plaintext_asc[i + 1]);
+		unsigned char key_hex = (unsigned char) charsToHex(key_asc[i], key_asc[i + 1]);
 		
 		state[word] = (state[word] << 8) | state_hex; 
 		key[word] = (key[word] << 8) | key_hex; 
 	}
-	
+
 	/* Get the Key Schedule */
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
 	KeyExpansion(key, key_schedule);
@@ -412,56 +412,57 @@ int main()
 	unsigned long state[4];
 	unsigned long key[4];
 
-	test();
-	// printf("Select execution mode: 0 for testing, 1 for benchmarking: ");
-	// scanf("%d", &run_mode);
+	// test();
 
-	// if (run_mode == 0) {
-	// 	while (1) {
-	// 		int i = 0;
-	// 		printf("\nEnter plain text:\n");
-	// 		scanf("%s", plaintext_asc);
-	// 		printf("\n");
-	// 		printf("\nEnter key:\n");
-	// 		scanf("%s", key_asc);
-	// 		printf("\n");
-	// 		encrypt(plaintext_asc, key_asc, state, key);
-	// 		printf("\nEncrpted message is: \n");
-	// 		for(i = 0; i < 4; i++){
-	// 			printf("%08lX\n", state[i]);
-	// 		}
-	// 		decrypt(state, key);
-	// 		printf("\nDecrypted message is: \n");
-	// 		for(i = 0; i < 4; i++){
-	// 			printf("%08lX\n", state[i]);
-	// 		}
-	// 	}
-	// }
-	// else {
-	// 	int i = 0;
-	// 	int size_KB = 1;
-	// 	for (i = 0; i < 32; i++) {
-	// 		plaintext_asc[i] = 'a';
-	// 		key_asc[i] = 'b';
-	// 	}
+	printf("Select execution mode: 0 for testing, 1 for benchmarking: ");
+	scanf("%d", &run_mode);
 
-	// 	clock_t begin = clock();
-	// 	for (i = 0; i < size_KB * 128; i++)
-	// 		encrypt(plaintext_asc, key_asc, state, key);
-	// 	clock_t end = clock();
-	// 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	// 	double speed = size_KB / time_spent;
+	if (run_mode == 0) {
+		while (1) {
+			int i = 0;
+			printf("\nEnter plain text:\n");
+			scanf("%s", plaintext_asc);
+			printf("\n");
+			printf("\nEnter key:\n");
+			scanf("%s", key_asc);
+			printf("\n");
+			encrypt(plaintext_asc, key_asc, state, key);
+			printf("\nEncrpted message is: \n");
+			for(i = 0; i < 4; i++){
+				printf("%08lX\n", state[i]);
+			}
+			decrypt(state, key);
+			printf("\nDecrypted message is: \n");
+			for(i = 0; i < 4; i++){
+				printf("%08lX\n", state[i]);
+			}
+		}
+	}
+	else {
+		int i = 0;
+		int size_KB = 1;
+		for (i = 0; i < 32; i++) {
+			plaintext_asc[i] = 'a';
+			key_asc[i] = 'b';
+		}
 
-	// 	printf("Software Encryption Speed: %f KB/s \n", speed);
+		clock_t begin = clock();
+		for (i = 0; i < size_KB * 128; i++)
+			encrypt(plaintext_asc, key_asc, state, key);
+		clock_t end = clock();
+		double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+		double speed = size_KB / time_spent;
 
-	// 	begin = clock();
-	// 	for (i = 0; i < size_KB * 128; i++)
-	// 		decrypt(state, key);
-	// 	end = clock();
-	// 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	// 	speed = size_KB / time_spent;
+		printf("Software Encryption Speed: %f KB/s \n", speed);
 
-	// 	printf("Hardware Encryption Speed: %f KB/s \n", speed);
-	// }
+		begin = clock();
+		for (i = 0; i < size_KB * 128; i++)
+			decrypt(state, key);
+		end = clock();
+		time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+		speed = size_KB / time_spent;
+
+		printf("Hardware Encryption Speed: %f KB/s \n", speed);
+	}
 	return 0;
 }
