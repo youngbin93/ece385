@@ -193,8 +193,7 @@ void ShiftRows(unsigned long * state)
 	unsigned long word_1_0 = (state[1] & MASK_0) >> 24;
 	unsigned long word_1_1 = (state[1] & MASK_1) >> 16;
 	unsigned long word_1_2 = (state[1] & MASK_2) >> 8;
-	unsigned long word_1_3 = (state[1] & mask_3);
-
+	unsigned long word_1_3 = (state[1] & MASK_3);
 	unsigned long word_2_0 = (state[2] & MASK_0) >> 24;
 	unsigned long word_2_1 = (state[2] & MASK_1) >> 16;
 	unsigned long word_2_2 = (state[2] & MASK_2) >> 8;
@@ -332,12 +331,12 @@ int main()
 			encrypt(plaintext_asc, key_asc, state, key);
 			printf("\nEncrpted message is: \n");
 			for(i = 0; i < 4; i++){
-				printf("%08lX\n", state[i])
+				printf("%08lX\n", state[i]);
 			}
 			decrypt(state, key);
 			printf("\nDecrypted message is: \n");
 			for(i = 0; i < 4; i++){
-				printf("%08lX\n", state[i])
+				printf("%08lX\n", state[i]);
 			}
 		}
 	}
