@@ -177,7 +177,10 @@ void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
  */
 void SubBytes(unsigned long * state)
 {
-	return;
+	for(int i = 0; i < 4; i++)
+	{
+		state[i] = SubWord(state[i]);
+	}
 }
 
 /** ShiftRows
