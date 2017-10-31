@@ -10,9 +10,6 @@
 #define MASK_1 0x00FF0000
 #define MASK_2 0x0000FF00
 #define MASK_3 0x000000FF
-#define TWO 0x02
-#define THREE 0x03
-
 
 // This is the specified AES SBox.
 const uchar aes_sbox[256] = {

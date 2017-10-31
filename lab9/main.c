@@ -228,6 +228,18 @@ void ShiftRows(unsigned long * state)
 	state[3] = (~MASK_3 & state[3]) | (word_3_2);
 }
 
+/* Mix Columns helper fucntion */
+unsigned char xtime(unsigned long byte)
+{
+	unsigned char ans = byte << 1;
+
+	if(byte % 2 == 1)
+	{
+		ans ^= 1; 
+	}
+	return ans;
+}
+
 /** MixColumns
  *  
  *  
@@ -244,10 +256,10 @@ void MixColumns(unsigned long * state)
 		unsigned long byte_2 = (state[i] & MASK_2) >> 8;
 		unsigned long byte_3 = (state[i] & MASK_3);
 
-		state[i] = (~MASK_0 & state[i]) | ((TWO * byte_0) ^ (THREE * byte_1) ^ byte_2 ^ byte_3);
-		state[i] = (~MASK_1 & state[i]) | (byte_0 ^ (TWO * byte_1) ^ (THREE * byte_2) ^ byte_3);
-		state[i] = (~MASK_2 & state[i]) | ((byte_0 ^ byte_1 ^ (TWO * byte_2) ^ (THREE * byte_3)));
-		state[i] = (~MASK_3 & state[i]) | (((THREE * byte_0) ^ byte_1 ^ byte_2 ^ (TWO * byte_3)));
+		state[i] = (~MASK_0 & state[i]) | (xtime(byte_0) ^ (xtime(byte_1) ^ byte_1) ^ byte_2 ^ byte_3);
+		state[i] = (~MASK_1 & state[i]) | (byte_0 ^ xtime(byte_1) ^ (xtime(byte_2) ^ byte_2) ^ byte_3);
+		state[i] = (~MASK_2 & state[i]) | ((byte_0 ^ byte_1 ^ xtime(byte_2) ^ (xtime(byte_3) ^ byte_3)));
+		state[i] = (~MASK_3 & state[i]) | (((xtime(byte_0) ^ byte_0) ^ byte_1 ^ byte_2 ^ xtime(byte_3)));
 	}
 }
 
