@@ -194,43 +194,38 @@ void SubBytes(unsigned long * state)
  */
 void ShiftRows(unsigned long * state)
 {
-	unsigned long mask_0 = 0xFF000000;
-	unsigned long mask_1 = 0x00FF0000;
-	unsigned long mask_2 = 0x0000FF00;
-	unsigned long mask_3 = 0x000000FF;
-
-	unsigned long word_1_0 = (state[1] & mask_0) >> 24;
-	unsigned long word_1_1 = (state[1] & mask_1) >> 16;
-	unsigned long word_1_2 = (state[1] & mask_2) >> 8;
+	unsigned long word_1_0 = (state[1] & MASK_0) >> 24;
+	unsigned long word_1_1 = (state[1] & MASK_1) >> 16;
+	unsigned long word_1_2 = (state[1] & MASK_2) >> 8;
 	unsigned long word_1_3 = (state[1] & mask_3);
 
-	unsigned long word_2_0 = (state[2] & mask_0) >> 24;
-	unsigned long word_2_1 = (state[2] & mask_1) >> 16;
-	unsigned long word_2_2 = (state[2] & mask_2) >> 8;
-	unsigned long word_2_3 = (state[2] & mask_3);
+	unsigned long word_2_0 = (state[2] & MASK_0) >> 24;
+	unsigned long word_2_1 = (state[2] & MASK_1) >> 16;
+	unsigned long word_2_2 = (state[2] & MASK_2) >> 8;
+	unsigned long word_2_3 = (state[2] & MASK_3);
 
-	unsigned long word_3_0 = (state[3] & mask_0) >> 24;
-	unsigned long word_3_1 = (state[3] & mask_1) >> 16;
-	unsigned long word_3_2 = (state[3] & mask_2) >> 8;
-	unsigned long word_3_3 = (state[3] & mask_3);
+	unsigned long word_3_0 = (state[3] & MASK_0) >> 24;
+	unsigned long word_3_1 = (state[3] & MASK_1) >> 16;
+	unsigned long word_3_2 = (state[3] & MASK_2) >> 8;
+	unsigned long word_3_3 = (state[3] & MASK_3);
 
 	/* Second row gets one shift */
-	state[0] = (~mask_1 & state[0]) | (word_1_1 << 16);
-	state[1] = (~mask_1 & state[1]) | (word_1_2 << 16);
-	state[2] = (~mask_1 & state[2]) | (word_1_3 << 16);
-	state[3] = (~mask_1 & state[3]) | (word_1_0 << 16);
+	state[0] = (~MASK_1 & state[0]) | (word_1_1 << 16);
+	state[1] = (~MASK_1 & state[1]) | (word_1_2 << 16);
+	state[2] = (~MASK_1 & state[2]) | (word_1_3 << 16);
+	state[3] = (~MASK_1 & state[3]) | (word_1_0 << 16);
 
 	/* Third row gets two shifts */
-	state[0] = (~mask_2 & state[0]) | (word_2_2 << 8);
-	state[1] = (~mask_2 & state[1]) | (word_2_3 << 8);
-	state[2] = (~mask_2 & state[2]) | (word_2_0 << 8);
-	state[3] = (~mask_2 & state[3]) | (word_2_1 << 8);
+	state[0] = (~MASK_2 & state[0]) | (word_2_2 << 8);
+	state[1] = (~MASK_2 & state[1]) | (word_2_3 << 8);
+	state[2] = (~MASK_2 & state[2]) | (word_2_0 << 8);
+	state[3] = (~MASK_2 & state[3]) | (word_2_1 << 8);
 
 	/* Fourth row gets three shifts */
-	state[0] = (~mask_3 & state[0]) | (word_3_3);
-	state[1] = (~mask_3 & state[1]) | (word_3_0);
-	state[2] = (~mask_3 & state[2]) | (word_3_1);
-	state[3] = (~mask_3 & state[3]) | (word_3_2);
+	state[0] = (~MASK_3 & state[0]) | (word_3_3);
+	state[1] = (~MASK_3 & state[1]) | (word_3_0);
+	state[2] = (~MASK_3 & state[2]) | (word_3_1);
+	state[3] = (~MASK_3 & state[3]) | (word_3_2);
 }
 
 /** MixColumns
@@ -242,7 +237,18 @@ void ShiftRows(unsigned long * state)
  */
 void MixColumns(unsigned long * state)
 {
-	return;
+	for(int i = 0; i < 4; i++)
+	{
+		unsigned long word_0 = (state[i] & MASK_0) >> 24;
+		unsigned long word_1 = (state[i] & MASK_1) >> 16;
+		unsigned long word_2 = (state[i] & MASK_2) >> 8;
+		unsigned long word_3 = (state[i] & MASK_3);
+
+		state[i] = (~MASK_0 & state[i]) | ((TWO * word_0) ^ (THREE * word_1) ^ word_2 ^ word_3);
+		state[i] = (~MASK_1 & state[i]) | (word_0 ^ (TWO * word_1) ^ (THREE * word_2) ^ word_3);
+		state[i] = (~MASK_2 & state[i]) | ((word_0 ^ word_1 ^ (TWO * word_2) ^ (THREE * word_3)));
+		state[i] = (~MASK_3 & state[i]) | (((THREE * word_0) ^ word_1 ^ word_2 ^ (TWO * word_3)));
+	}
 }
 
 // Perform AES Encryption in Software
