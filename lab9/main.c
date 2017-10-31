@@ -316,7 +316,6 @@ void test()
 		print_state(state);
 		printf("\n");
 
-
 		ShiftRows(state);
 
 		printf("AFTER SHIFT_ROWS: \n");
@@ -329,13 +328,30 @@ void test()
 		print_state(state);
 		printf("\n");
 
-
 		AddRoundKey(state, round, key_schedule);
 
 		printf("ROUND %i STATE: \n", round);
 		print_state(state);
 	}
 
+	printf("\n");
+	printf("FINAL ROUND:\n");
+
+	/* Perform final round of AES algorithm */
+	SubBytes(state);
+	printf("AFTER SUB_BYTES: \n");
+	print_state(state);
+	printf("\n");
+
+	ShiftRows(state);
+
+	printf("AFTER SHIFT_ROWS: \n");
+	print_state(state);
+	printf("\n");
+
+	AddRoundKey(state, Nr, key_schedule);
+	printf("FINAL ROUND STATE: \n");
+	print_state(state);
 }
 
 // Perform AES Encryption in Software
