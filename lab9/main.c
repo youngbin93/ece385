@@ -92,8 +92,7 @@ unsigned long SubWord(unsigned long word)
  */
 unsigned long RotWord(unsigned long word)
 {
-	byte_mask = 0x000000FF;
-	return ((word >> 16) & byte_mask) | ((word >> 8) & byte_mask) | ((word) & byte_mask) | ((word >> 24) & byte_mask);
+	return ((word >> 16) & MASK_3) | ((word >> 8) & MASK_3) | ((word) & MASK_3) | ((word >> 24) & MASK_3);
 }
 
 /** KeyExpansion
@@ -107,12 +106,11 @@ unsigned long RotWord(unsigned long word)
 {
 	/* Create a copy of the key array that allows byte indexing */
 	unsigned char key_bytes[16];
-	byte_mask = 0x000000FF
 	for (int i = 0; i < 16 ; i ++) 
 	{
 		int key_index = i/4;
 		int byte_index = i % 4;
-		key_bytes[i] = (unsigned char)(byte_mask & (key[key_index] >> (24 - (8 * (byte_index)))));
+		key_bytes[i] = (unsigned char)(MASK_3 & (key[key_index] >> (24 - (8 * (byte_index)))));
 	}
 	
 	/* Begin Key Expansion algorithm */
