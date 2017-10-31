@@ -4,7 +4,7 @@
 #define uchar unsigned char // 8-bit byte
 #define uint unsigned long // 32-bit word
 #define Nb 4
-#define Nr 11
+#define Nr 10
 #define Nk 4
 
 // This is the specified AES SBox.

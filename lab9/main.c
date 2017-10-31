@@ -156,15 +156,17 @@ unsigned long RotWord(unsigned long word)
  */
 void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 {
-	for(int j = 0; j < 4; j++)
+	int round_index = round * 16;
+	int k = 0;
+	for(int i = round_index; i < round_index + 16; i = i + 4)
 	{
-		unsigned long xor_word = 0; 
-		for(int i = (round * 4) + (j * 4); i < (round * 4) + (j * 4) + 4; i++)
+		unsigned long xor_word = 0;
+		for(int j = 0; j < 4; j++)
 		{
-			xor_word = (xor_word << 8) | key_schedule[i];
+			xor_word = (xor_word << 8) | key_schedule[i+j];
 		}
-
-		state[j] ^= xor_word;
+		state[k] ^= xor_word;
+		k++;
 	}
 }
 
