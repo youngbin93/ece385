@@ -21,7 +21,7 @@ int run_mode = 0;
 
 /** charToHex
  *  Convert a single character to the 4-bit value it represents.
- *  
+ *
  *  input: a character c (e.g. 'A')
  *  output: converted 4-bit value (e.g. 0xA)
  */
@@ -47,7 +47,7 @@ char charToHex(char c)
 /** charsToHex
  *  Convert two characters to byte value it represents.
  *  Inputs must be 0-9, A-F, or a-f.
- *  
+ *
  *  input: two characters c1 and c2 (e.g. 'A' and '7')
  *  output: converted byte value (e.g. 0xA7)
  */
@@ -59,18 +59,18 @@ char charsToHex(char c1, char c2)
 }
 
 /** SubWord
- *  
- *  
- *  
- *  input: word to substituted 
+ *
+ *
+ *
+ *  input: word to substituted
  *  output: substituted word
  */
 unsigned long SubWord(unsigned long word)
 {
 	unsigned char i, j;
 	unsigned long new_word = 0;
-	
-	int k = 0; 
+
+	int k = 0;
 	while(k < 4)
 	{
 		j = (unsigned char) ((word >> (k * 8)) & MASK_4);
@@ -82,22 +82,22 @@ unsigned long SubWord(unsigned long word)
 }
 
 /** RotWord
- *  
- *  
- *  
- *  input: a 32-bit word to rotate 
+ *
+ *
+ *
+ *  input: a 32-bit word to rotate
  *  output: a cyclically left rotation of the word
  */
 unsigned long RotWord(unsigned long word)
-{	
+{
 	unsigned long first_byte = (MASK_0 & word) >> 24;
 	return ((word & ~MASK_0) << 8) | first_byte;
 }
 
 /** KeyExpansion
- *  
- *  
- *  
+ *
+ *
+ *
  *  input: pointer to the key array to expand, pointer to the array to store expansion
  *  output: none
  */
@@ -105,34 +105,33 @@ unsigned long RotWord(unsigned long word)
 {
 	/* Create a copy of the key array that allows byte indexing */
 	unsigned char key_bytes[16];
-	for (int i = 0; i < 16 ; i ++) 
+	int i;
+	for (i = 0; i < 16 ; i ++)
 	{
 		int key_index = i/4;
 		int byte_index = i % 4;
 		key_bytes[i] = (unsigned char)(MASK_3 & (key[key_index] >> (24 - (8 * (byte_index)))));
 	}
-	
+
 	/* Begin Key Expansion algorithm */
 	unsigned long temp = 0;
-	int i = 0; 
-	
+	i = 0;
+
 	while (i < Nk)
 	{
 		key_schedule[4*i] = key_bytes[4*i] ;
 		key_schedule[4*i+1] = key_bytes[4*i+1] ;
 		key_schedule[4*i+2] = key_bytes[4*i+2] ;
 		key_schedule[4*i+3] = key_bytes[4*i+3] ;
-		i++; 
+		i++;
 	}
-	
-	i = Nk; 
-	int j = 0; 
+
+	i = Nk;
 	while(i < Nb * (Nr + 1))
 	{
 		temp = ((unsigned long)key_schedule[4*i - 4] << 24) | ((unsigned long)key_schedule[4*i - 3] << 16) | ((unsigned long)key_schedule[4*i - 2] << 8) | ((unsigned long)key_schedule[4*i - 1]);
 		if(i % Nk == 0)
 		{
-			unsigned long temp2 = RotWord(temp);
 			temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk];
 		}
 
@@ -145,9 +144,9 @@ unsigned long RotWord(unsigned long word)
 }
 
 /** AddRoundKey
- *  
- *  
- *  
+ *
+ *
+ *
  *  input: pointer to the state array, round number and pointer to the key schedule
  *  output: none
  */
@@ -155,10 +154,12 @@ void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 {
 	int round_index = round * 16;
 	int k = 0;
-	for(int i = round_index; i < round_index + 16; i = i + 4)
+	int i;
+	for(i = round_index; i < round_index + 16; i = i + 4)
 	{
 		unsigned long xor_word = 0;
-		for(int j = 0; j < 4; j++)
+		int j;
+		for(j = 0; j < 4; j++)
 		{
 			xor_word = (xor_word << 8) | key_schedule[i+j];
 		}
@@ -168,26 +169,27 @@ void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 }
 
 /** SubBytes
- *  
- *  
- *  
+ *
+ *
+ *
  *  input: pointer to the state array
  *  output: none
  */
 void SubBytes(unsigned long * state)
 {
-	for(int i = 0; i < 4; i++)
+	int i;
+	for(i = 0; i < 4; i++)
 	{
 		state[i] = SubWord(state[i]);
 	}
 }
 
 /** ShiftRows
- *  
- *  
- *  
+ *
+ *
+ *
  *  input: pointer to the state array
- *  output: none 
+ *  output: none
  */
 void ShiftRows(unsigned long * state)
 {
@@ -231,15 +233,16 @@ unsigned char xtime(unsigned long byte)
 }
 
 /** MixColumns
- *  
- *  
- *  
- *  input: 
- *  output: 
+ *
+ *
+ *
+ *  input:
+ *  output:
  */
 void MixColumns(unsigned long * state)
 {
-	for(int i = 0; i < 4; i++)
+	int i;
+	for(i = 0; i < 4; i++)
 	{
 		unsigned long byte_0 = (state[i] & MASK_0) >> 24;
 		unsigned long byte_1 = (state[i] & MASK_1) >> 16;
@@ -255,7 +258,8 @@ void MixColumns(unsigned long * state)
 /* DEBUG FUNCTIONS*/
 void print_state(unsigned long * state)
 {
-	for(int i = 0; i < 4; i++)
+	int i;
+	for(i = 0; i < 4; i++)
 	{
 		printf("%08lX ", state[i]);
 		printf("\n");
@@ -264,9 +268,10 @@ void print_state(unsigned long * state)
 
 void print_key_schedule(unsigned char * key_schedule)
 {
-	for(int i = 0; i < 44; i++)
+	int i, j;
+	for(i = 0; i < 44; i++)
 	{
-		for(int j = 0; j < 4; j++)
+		for(j = 0; j < 4; j++)
 		{
 			printf("%02X ", key_schedule[i*4 + j]);
 		}
@@ -293,7 +298,7 @@ void test()
 		0xECE298DC
 	};
 
-	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
+	unsigned char key_schedule[4 * (Nb * (Nr + 1))];
 	KeyExpansion(key, key_schedule);
 
 	printf("KEY EXPANSION: \n");
@@ -305,9 +310,9 @@ void test()
 
 	printf("ROUND 0 STATE: \n");
 	print_state(state);
-
+	int round;
 	/* Perform nine full rounds of AES algorithm */
-	for (int round = 1; round < Nr; round++) 
+	for (round = 1; round < Nr; round++)
 	{
 		printf("\n");
 		SubBytes(state);
@@ -357,40 +362,41 @@ void test()
 // Perform AES Encryption in Software
 void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned long * state, unsigned long * key)
 {
+	int i;
 	/* clear the state and key arrays */
-	for (int i = 0; i < 4 ; i ++) 
+	for (i = 0; i < 4 ; i ++)
 	{
 		state[i] = 0;
 		key[i] = 0;
 	}
 
 	/* Set the state and the key values */
-	for (int i = 0; i <= 30; i = i + 2) 
+	for (i = 0; i <= 30; i = i + 2)
 	{
-		int word = i/8; 
+		int word = i/8;
 		unsigned char state_hex = (unsigned char) charsToHex(plaintext_asc[i], plaintext_asc[i + 1]);
 		unsigned char key_hex = (unsigned char) charsToHex(key_asc[i], key_asc[i + 1]);
-		
-		state[word] = (state[word] << 8) | state_hex; 
-		key[word] = (key[word] << 8) | key_hex; 
+
+		state[word] = (state[word] << 8) | state_hex;
+		key[word] = (key[word] << 8) | key_hex;
 	}
 
 	/* Get the Key Schedule */
-	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
+	unsigned char key_schedule[4 * (Nb * (Nr + 1))];
 	KeyExpansion(key, key_schedule);
-	
+
 	/* Add the first round key */
 	AddRoundKey(state, 0, key_schedule);
-	
+	int round;
 	/* Perform nine full rounds of AES algorithm */
-	for (int round = 1; round < Nr; round++) 
+	for (round = 1; round < Nr; round++)
 	{
 		SubBytes(state);
 		ShiftRows(state);
 		MixColumns(state);
 		AddRoundKey(state, round, key_schedule);
 	}
-	
+
 	/* Perform final round of AES algorithm */
 	SubBytes(state);
 	ShiftRows(state);
