@@ -113,7 +113,7 @@ unsigned long RotWord(unsigned long word)
 	
 	/* Begin Key Expansion algorithm */
 	unsigned long temp = 0;
-	i = 0; 
+	int i = 0; 
 	
 	while (i < Nk)
 	{
