@@ -239,15 +239,15 @@ void MixColumns(unsigned long * state)
 {
 	for(int i = 0; i < 4; i++)
 	{
-		unsigned long word_0 = (state[i] & MASK_0) >> 24;
-		unsigned long word_1 = (state[i] & MASK_1) >> 16;
-		unsigned long word_2 = (state[i] & MASK_2) >> 8;
-		unsigned long word_3 = (state[i] & MASK_3);
+		unsigned long byte_0 = (state[i] & MASK_0) >> 24;
+		unsigned long byte_1 = (state[i] & MASK_1) >> 16;
+		unsigned long byte_2 = (state[i] & MASK_2) >> 8;
+		unsigned long byte_3 = (state[i] & MASK_3);
 
-		state[i] = (~MASK_0 & state[i]) | ((TWO * word_0) ^ (THREE * word_1) ^ word_2 ^ word_3);
-		state[i] = (~MASK_1 & state[i]) | (word_0 ^ (TWO * word_1) ^ (THREE * word_2) ^ word_3);
-		state[i] = (~MASK_2 & state[i]) | ((word_0 ^ word_1 ^ (TWO * word_2) ^ (THREE * word_3)));
-		state[i] = (~MASK_3 & state[i]) | (((THREE * word_0) ^ word_1 ^ word_2 ^ (TWO * word_3)));
+		state[i] = (~MASK_0 & state[i]) | ((TWO * byte_0) ^ (THREE * byte_1) ^ byte_2 ^ byte_3);
+		state[i] = (~MASK_1 & state[i]) | (byte_0 ^ (TWO * byte_1) ^ (THREE * byte_2) ^ byte_3);
+		state[i] = (~MASK_2 & state[i]) | ((byte_0 ^ byte_1 ^ (TWO * byte_2) ^ (THREE * byte_3)));
+		state[i] = (~MASK_3 & state[i]) | (((THREE * byte_0) ^ byte_1 ^ byte_2 ^ (TWO * byte_3)));
 	}
 }
 
