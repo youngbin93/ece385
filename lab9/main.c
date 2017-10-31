@@ -147,7 +147,6 @@ unsigned long RotWord(unsigned long word)
 	}
 }
 
-
 /** AddRoundKey
  *  
  *  
@@ -157,7 +156,16 @@ unsigned long RotWord(unsigned long word)
  */
 void AddRoundKey(unsigned long * state, int round, unsigned char * key_schedule)
 {
-	return;
+	for(int j = 0; j < 4; j++)
+	{
+		unsigned long xor_word = 0; 
+		for(int i = (round * 4) + (j * 4); i < (round * 4) + (j * 4) + 4; i++)
+		{
+			xor_word = (xor_word << 8) | key_schedule[i];
+		}
+
+		state[j] ^= xor_word;
+	}
 }
 
 /** SubBytes
