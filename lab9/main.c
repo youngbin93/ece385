@@ -135,8 +135,8 @@ unsigned long RotWord(unsigned long word)
 			unsigned long temp2 = RotWord(temp);
 			temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk];
 		}
-		
-		key_schedule[4*i]   = key_schedule[(4*(i-Nk))] ^ (temp >> 24);
+
+		key_schedule[4*i]   = key_schedule[(4*(i-Nk))]     ^ (temp >> 24);
 		key_schedule[4*i+1] = key_schedule[(4*(i-Nk)) + 1] ^ (temp >> 16);
 		key_schedule[4*i+2] = key_schedule[(4*(i-Nk)) + 2] ^ (temp >> 8);
 		key_schedule[4*i+3] = key_schedule[(4*(i-Nk)) + 3] ^ (temp);
