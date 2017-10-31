@@ -227,13 +227,7 @@ void ShiftRows(unsigned long * state)
 /* Mix Columns helper function */
 unsigned char xtime(unsigned long byte)
 {
-	unsigned char ans = byte << 1;
-
-	if(byte % 2 == 1)
-	{
-		ans ^= 1; 
-	}
-	return ans;
+	return gf_mul[(unsigned char) byte][0];
 }
 
 /** MixColumns
@@ -251,11 +245,6 @@ void MixColumns(unsigned long * state)
 		unsigned long byte_1 = (state[i] & MASK_1) >> 16;
 		unsigned long byte_2 = (state[i] & MASK_2) >> 8;
 		unsigned long byte_3 = (state[i] & MASK_3);
-		
-		printf("BYTE_0: %08lX\n", byte_0);
-		printf("BYTE_1: %08lX\n", byte_1);
-		printf("BYTE_2: %08lX\n", byte_2);
-		printf("BYTE_3: %08lX\n", byte_3);
 
 		state[i] = (~MASK_0 & state[i]) | ((xtime(byte_0) ^ (xtime(byte_1) ^ byte_1) ^ byte_2 ^ byte_3) << 24);
 		state[i] = (~MASK_1 & state[i]) | ((byte_0 ^ xtime(byte_1) ^ (xtime(byte_2) ^ byte_2) ^ byte_3) << 16);
@@ -307,8 +296,9 @@ void test()
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
 	KeyExpansion(key, key_schedule);
 
-	// printf("KEY EXPANSION: \n");
-	// print_key_schedule(key_schedule);
+	printf("KEY EXPANSION: \n");
+	print_key_schedule(key_schedule);
+	printf("\n");
 
 	/* Add the first round key */
 	AddRoundKey(state, 0, key_schedule);
@@ -319,29 +309,31 @@ void test()
 	/* Perform nine full rounds of AES algorithm */
 	for (int round = 1; round < Nr; round++) 
 	{
+		printf("\n");
 		SubBytes(state);
 
 		printf("AFTER SUB_BYTES: \n");
 		print_state(state);
+		printf("\n");
 
 
 		ShiftRows(state);
 
 		printf("AFTER SHIFT_ROWS: \n");
 		print_state(state);
+		printf("\n");
 
 		MixColumns(state);
 
 		printf("AFTER MIX_COLUMNS: \n");
 		print_state(state);
+		printf("\n");
 
-		break;
 
 		AddRoundKey(state, round, key_schedule);
 
 		printf("ROUND %i STATE: \n", round);
 		print_state(state);
-		
 	}
 
 }
