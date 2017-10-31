@@ -191,38 +191,38 @@ void SubBytes(unsigned long * state)
  */
 void ShiftRows(unsigned long * state)
 {
-	unsigned long word_1_0 = (state[1] & MASK_0) >> 24;
+	unsigned long word_0_1 = (state[0] & MASK_1) >> 16;
+	unsigned long word_0_2 = (state[0] & MASK_2) >> 8;
+	unsigned long word_0_3 = (state[0] & MASK_3);
+
 	unsigned long word_1_1 = (state[1] & MASK_1) >> 16;
 	unsigned long word_1_2 = (state[1] & MASK_2) >> 8;
 	unsigned long word_1_3 = (state[1] & MASK_3);
-	unsigned long word_2_0 = (state[2] & MASK_0) >> 24;
+
 	unsigned long word_2_1 = (state[2] & MASK_1) >> 16;
 	unsigned long word_2_2 = (state[2] & MASK_2) >> 8;
 	unsigned long word_2_3 = (state[2] & MASK_3);
 
-	unsigned long word_3_0 = (state[3] & MASK_0) >> 24;
 	unsigned long word_3_1 = (state[3] & MASK_1) >> 16;
 	unsigned long word_3_2 = (state[3] & MASK_2) >> 8;
 	unsigned long word_3_3 = (state[3] & MASK_3);
 
-	/* Second row gets one shift */
-	state[0] = (~MASK_1 & state[0]) | (word_1_1 << 16);
-	state[1] = (~MASK_1 & state[1]) | (word_1_2 << 16);
-	state[2] = (~MASK_1 & state[2]) | (word_1_3 << 16);
-	state[3] = (~MASK_1 & state[3]) | (word_1_0 << 16);
+	state[0]= (state[0] & ~(MASK_1)) | word_1_1 << 16;
+	state[1]= (state[1] & ~(MASK_1)) | word_2_1 << 16;
+	state[2]= (state[2] & ~(MASK_1)) | word_3_1 << 16;
+	state[3]= (state[3] & ~(MASK_1)) | word_0_1 << 16;
 
-	/* Third row gets two shifts */
-	state[0] = (~MASK_2 & state[0]) | (word_2_2 << 8);
-	state[1] = (~MASK_2 & state[1]) | (word_2_3 << 8);
-	state[2] = (~MASK_2 & state[2]) | (word_2_0 << 8);
-	state[3] = (~MASK_2 & state[3]) | (word_2_1 << 8);
+	state[0]= (state[0] & ~(MASK_2)) | word_2_2 << 8;
+	state[1]= (state[1] & ~(MASK_2)) | word_3_2 << 8;
+	state[2]= (state[2] & ~(MASK_2)) | word_0_2 << 8;
+	state[3]= (state[3] & ~(MASK_2)) | word_1_2 << 8;
 
-	/* Fourth row gets three shifts */
-	state[0] = (~MASK_3 & state[0]) | (word_3_3);
-	state[1] = (~MASK_3 & state[1]) | (word_3_0);
-	state[2] = (~MASK_3 & state[2]) | (word_3_1);
-	state[3] = (~MASK_3 & state[3]) | (word_3_2);
+	state[0]= (state[0] & ~(MASK_3)) | word_3_3;
+	state[1]= (state[1] & ~(MASK_3)) | word_0_3;
+	state[2]= (state[2] & ~(MASK_3)) | word_1_3;
+	state[3]= (state[3] & ~(MASK_3)) | word_2_3;
 }
+
 
 /* Mix Columns helper function */
 unsigned char xtime(unsigned long byte)
@@ -251,11 +251,37 @@ void MixColumns(unsigned long * state)
 		unsigned long byte_1 = (state[i] & MASK_1) >> 16;
 		unsigned long byte_2 = (state[i] & MASK_2) >> 8;
 		unsigned long byte_3 = (state[i] & MASK_3);
+		
+		printf("BYTE_0: %08lX\n", byte_0);
+		printf("BYTE_1: %08lX\n", byte_1);
+		printf("BYTE_2: %08lX\n", byte_2);
+		printf("BYTE_3: %08lX\n", byte_3);
 
-		state[i] = (~MASK_0 & state[i]) | (xtime(byte_0) ^ (xtime(byte_1) ^ byte_1) ^ byte_2 ^ byte_3);
-		state[i] = (~MASK_1 & state[i]) | (byte_0 ^ xtime(byte_1) ^ (xtime(byte_2) ^ byte_2) ^ byte_3);
-		state[i] = (~MASK_2 & state[i]) | ((byte_0 ^ byte_1 ^ xtime(byte_2) ^ (xtime(byte_3) ^ byte_3)));
+		state[i] = (~MASK_0 & state[i]) | ((xtime(byte_0) ^ (xtime(byte_1) ^ byte_1) ^ byte_2 ^ byte_3) << 24);
+		state[i] = (~MASK_1 & state[i]) | ((byte_0 ^ xtime(byte_1) ^ (xtime(byte_2) ^ byte_2) ^ byte_3) << 16);
+		state[i] = (~MASK_2 & state[i]) | ((byte_0 ^ byte_1 ^ xtime(byte_2) ^ (xtime(byte_3) ^ byte_3)) << 8);
 		state[i] = (~MASK_3 & state[i]) | (((xtime(byte_0) ^ byte_0) ^ byte_1 ^ byte_2 ^ xtime(byte_3)));
+	}
+}
+/* DEBUG FUNCTIONS*/
+void print_state(unsigned long * state)
+{
+	for(int i = 0; i < 4; i++)
+	{
+		printf("%08lX ", state[i]);
+		printf("\n");
+	}
+}
+
+void print_key_schedule(unsigned char * key_schedule)
+{
+	for(int i = 0; i < 44; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			printf("%02X ", key_schedule[i*4 + j]);
+		}
+		printf("\n");
 	}
 }
 
@@ -269,18 +295,55 @@ void test()
 		0x08090A0B,
 		0x0C0D0E0F
 	};
+
+	unsigned long state[4]=
+	{
+		0xECE298DC,
+		0xECE298DC,
+		0xECE298DC,
+		0xECE298DC
+	};
+
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
 	KeyExpansion(key, key_schedule);
 
-	printf("KEY EXPANSION: \n");
-	for(int i = 0; i < 44; i++)
+	// printf("KEY EXPANSION: \n");
+	// print_key_schedule(key_schedule);
+
+	/* Add the first round key */
+	AddRoundKey(state, 0, key_schedule);
+
+	printf("ROUND 0 STATE: \n");
+	print_state(state);
+
+	/* Perform nine full rounds of AES algorithm */
+	for (int round = 1; round < Nr; round++) 
 	{
-		for(int j = 0; j < 4; j++)
-		{
-			printf("%02X ", key_schedule[i*4 + j]);
-		}
-		printf("\n");
+		SubBytes(state);
+
+		printf("AFTER SUB_BYTES: \n");
+		print_state(state);
+
+
+		ShiftRows(state);
+
+		printf("AFTER SHIFT_ROWS: \n");
+		print_state(state);
+
+		MixColumns(state);
+
+		printf("AFTER MIX_COLUMNS: \n");
+		print_state(state);
+
+		break;
+
+		AddRoundKey(state, round, key_schedule);
+
+		printf("ROUND %i STATE: \n", round);
+		print_state(state);
+		
 	}
+
 }
 
 // Perform AES Encryption in Software
@@ -307,16 +370,6 @@ void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned lo
 	/* Get the Key Schedule */
 	unsigned char key_schedule[4 * (Nb * (Nr + 1))]; 
 	KeyExpansion(key, key_schedule);
-
-	printf("KEY EXPANSION: \n");
-	for(int i = 0; i < 11; i++)
-	{
-		for(int j = 0; j < 16; j++)
-		{
-			printf("%02X ", key_schedule[i*16 + j]);
-		}
-		printf("\n");
-	}
 	
 	/* Add the first round key */
 	AddRoundKey(state, 0, key_schedule);
