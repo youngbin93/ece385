@@ -17,6 +17,38 @@
          type = "String";
       }
    }
+   element AES
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element AES.AES_Slave
+   {
+      datum baseAddress
+      {
+         value = "64";
+         type = "String";
+      }
+   }
+   element TIMER
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element TIMER.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -37,7 +69,7 @@
    {
       datum baseAddress
       {
-         value = "160";
+         value = "256";
          type = "String";
       }
    }
@@ -53,7 +85,7 @@
    {
       datum baseAddress
       {
-         value = "112";
+         value = "208";
          type = "String";
       }
    }
@@ -101,7 +133,7 @@
    {
       datum baseAddress
       {
-         value = "80";
+         value = "176";
          type = "String";
       }
    }
@@ -117,7 +149,7 @@
    {
       datum baseAddress
       {
-         value = "96";
+         value = "192";
          type = "String";
       }
    }
@@ -133,7 +165,7 @@
    {
       datum baseAddress
       {
-         value = "64";
+         value = "160";
          type = "String";
       }
    }
@@ -149,7 +181,7 @@
    {
       datum baseAddress
       {
-         value = "48";
+         value = "144";
          type = "String";
       }
    }
@@ -165,7 +197,7 @@
    {
       datum baseAddress
       {
-         value = "32";
+         value = "128";
          type = "String";
       }
    }
@@ -202,7 +234,7 @@
    {
       datum baseAddress
       {
-         value = "128";
+         value = "224";
          type = "String";
       }
    }
@@ -218,7 +250,7 @@
    {
       datum baseAddress
       {
-         value = "152";
+         value = "248";
          type = "String";
       }
    }
@@ -236,13 +268,14 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="lab8.qpf" />
+ <parameter name="projectName" value="lab9_top.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
+ <interface name="aes_export" internal="AES.Export_Data" type="conduit" dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
    name="keycode"
@@ -277,6 +310,19 @@
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface name="sdram_clk" internal="sdram_pll.c1" type="clock" dir="start" />
  <interface name="sdram_wire" internal="sdram.wire" type="conduit" dir="end" />
+ <module name="AES" kind="AES_Decryption_Core" version="1.1" enabled="1" />
+ <module name="TIMER" kind="altera_avalon_timer" version="15.0" enabled="1">
+  <parameter name="alwaysRun" value="false" />
+  <parameter name="counterSize" value="32" />
+  <parameter name="fixedPeriod" value="false" />
+  <parameter name="period" value="1" />
+  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="resetOutput" value="false" />
+  <parameter name="snapshot" value="true" />
+  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="timeoutPulseOutput" value="false" />
+  <parameter name="watchdogPulse" value="2" />
+ </module>
  <module name="clk_0" kind="clock_source" version="15.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -330,7 +376,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="29" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='otg_hpi_w.s1' start='0x20' end='0x30' /><slave name='otg_hpi_r.s1' start='0x30' end='0x40' /><slave name='otg_hpi_data.s1' start='0x40' end='0x50' /><slave name='otg_hpi_address.s1' start='0x50' end='0x60' /><slave name='otg_hpi_cs.s1' start='0x60' end='0x70' /><slave name='keycode.s1' start='0x70' end='0x80' /><slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /><slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0xA0' end='0xA8' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='TIMER.s1' start='0x20' end='0x40' /><slave name='AES.AES_Slave' start='0x40' end='0x80' /><slave name='otg_hpi_w.s1' start='0x80' end='0x90' /><slave name='otg_hpi_r.s1' start='0x90' end='0xA0' /><slave name='otg_hpi_data.s1' start='0xA0' end='0xB0' /><slave name='otg_hpi_address.s1' start='0xB0' end='0xC0' /><slave name='otg_hpi_cs.s1' start='0xC0' end='0xD0' /><slave name='keycode.s1' start='0xD0' end='0xE0' /><slave name='sdram_pll.pll_slave' start='0xE0' end='0xF0' /><slave name='sysid_qsys_0.control_slave' start='0xF8' end='0x100' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x100' end='0x108' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -357,8 +403,8 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Tiny" />
   <parameter name="instAddrWidth" value="29" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='sdram_pll.pll_slave' start='0x80' end='0x90' /><slave name='sysid_qsys_0.control_slave' start='0x98' end='0xA0' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
-  <parameter name="internalIrqMaskSystemInfo" value="32" />
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x10' /><slave name='sdram_pll.pll_slave' start='0xE0' end='0xF0' /><slave name='sysid_qsys_0.control_slave' start='0xF8' end='0x100' /><slave name='nios2_qsys_0.jtag_debug_module' start='0x1000' end='0x1800' /><slave name='sdram.s1' start='0x10000000' end='0x18000000' /></address-map>]]></parameter>
+  <parameter name="internalIrqMaskSystemInfo" value="33" />
   <parameter name="manuallyAssignCpuID" value="true" />
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="mmu_TLBMissExcSlave" value="None" />
@@ -762,9 +808,18 @@
    kind="avalon"
    version="15.0"
    start="nios2_qsys_0.data_master"
+   end="AES.AES_Slave">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.0"
+   start="nios2_qsys_0.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00a0" />
+  <parameter name="baseAddress" value="0x0100" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -773,7 +828,7 @@
    start="nios2_qsys_0.data_master"
    end="sysid_qsys_0.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0098" />
+  <parameter name="baseAddress" value="0x00f8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -791,7 +846,7 @@
    start="nios2_qsys_0.data_master"
    end="sdram_pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0080" />
+  <parameter name="baseAddress" value="0x00e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -818,7 +873,7 @@
    start="nios2_qsys_0.data_master"
    end="keycode.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0070" />
+  <parameter name="baseAddress" value="0x00d0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -827,7 +882,7 @@
    start="nios2_qsys_0.data_master"
    end="otg_hpi_cs.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0060" />
+  <parameter name="baseAddress" value="0x00c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -836,7 +891,7 @@
    start="nios2_qsys_0.data_master"
    end="otg_hpi_address.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0050" />
+  <parameter name="baseAddress" value="0x00b0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -845,7 +900,7 @@
    start="nios2_qsys_0.data_master"
    end="otg_hpi_data.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="baseAddress" value="0x00a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -854,7 +909,7 @@
    start="nios2_qsys_0.data_master"
    end="otg_hpi_r.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0030" />
+  <parameter name="baseAddress" value="0x0090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -862,6 +917,15 @@
    version="15.0"
    start="nios2_qsys_0.data_master"
    end="otg_hpi_w.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0080" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.0"
+   start="nios2_qsys_0.data_master"
+   end="TIMER.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0020" />
   <parameter name="defaultConnection" value="false" />
@@ -872,7 +936,7 @@
    start="nios2_qsys_0.instruction_master"
    end="sysid_qsys_0.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0098" />
+  <parameter name="baseAddress" value="0x00f8" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -890,7 +954,7 @@
    start="nios2_qsys_0.instruction_master"
    end="sdram_pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0080" />
+  <parameter name="baseAddress" value="0x00e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -912,6 +976,7 @@
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="15.0" start="sdram_pll.c0" end="sdram.clk" />
+ <connection kind="clock" version="15.0" start="clk_0.clk" end="AES.CLK" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="nios2_qsys_0.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="sysid_qsys_0.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="jtag_uart_0.clk" />
@@ -925,6 +990,7 @@
  <connection kind="clock" version="15.0" start="clk_0.clk" end="otg_hpi_data.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="otg_hpi_r.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="otg_hpi_w.clk" />
+ <connection kind="clock" version="15.0" start="clk_0.clk" end="TIMER.clk" />
  <connection
    kind="clock"
    version="15.0"
@@ -942,6 +1008,14 @@
    end="jtag_uart_0.irq">
   <parameter name="irqNumber" value="5" />
  </connection>
+ <connection
+   kind="interrupt"
+   version="15.0"
+   start="nios2_qsys_0.d_irq"
+   end="TIMER.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="AES.RESET" />
  <connection
    kind="reset"
    version="15.0"
@@ -988,6 +1062,7 @@
    version="15.0"
    start="clk_0.clk_reset"
    end="otg_hpi_w.reset" />
+ <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="TIMER.reset" />
  <connection
    kind="reset"
    version="15.0"
@@ -998,6 +1073,11 @@
    version="15.0"
    start="clk_0.clk_reset"
    end="nios2_qsys_0.reset_n" />
+ <connection
+   kind="reset"
+   version="15.0"
+   start="nios2_qsys_0.jtag_debug_module_reset"
+   end="AES.RESET" />
  <connection
    kind="reset"
    version="15.0"
@@ -1033,6 +1113,11 @@
    version="15.0"
    start="nios2_qsys_0.jtag_debug_module_reset"
    end="jtag_uart_0.reset" />
+ <connection
+   kind="reset"
+   version="15.0"
+   start="nios2_qsys_0.jtag_debug_module_reset"
+   end="TIMER.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
