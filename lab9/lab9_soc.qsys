@@ -43,6 +43,14 @@
    }
    element TIMER.s1
    {
+<<<<<<< HEAD
+=======
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+>>>>>>> origin
       datum baseAddress
       {
          value = "32";
@@ -86,6 +94,17 @@
       datum baseAddress
       {
          value = "208";
+<<<<<<< HEAD
+=======
+         type = "String";
+      }
+   }
+   element lab9_soc
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone IV E";
+>>>>>>> origin
          type = "String";
       }
    }
@@ -1015,7 +1034,10 @@
    end="TIMER.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
+<<<<<<< HEAD
  <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="AES.RESET" />
+=======
+>>>>>>> origin
  <connection
    kind="reset"
    version="15.0"

@@ -230,6 +230,18 @@ altera_avalon_sysid_qsys_driver_SRCS_ROOT := drivers
 altera_avalon_sysid_qsys_driver_C_LIB_SRCS := \
 	$(altera_avalon_sysid_qsys_driver_SRCS_ROOT)/src/altera_avalon_sysid_qsys.c
 
+<<<<<<< HEAD
+=======
+# altera_avalon_timer_driver sources root 
+altera_avalon_timer_driver_SRCS_ROOT := drivers
+
+# altera_avalon_timer_driver sources 
+altera_avalon_timer_driver_C_LIB_SRCS := \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_sc.c \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_ts.c \
+	$(altera_avalon_timer_driver_SRCS_ROOT)/src/altera_avalon_timer_vars.c
+
+>>>>>>> origin
 # altera_nios2_qsys_hal_driver sources root 
 altera_nios2_qsys_hal_driver_SRCS_ROOT := HAL
 
@@ -330,6 +342,10 @@ hal_C_LIB_SRCS := \
 COMPONENT_C_LIB_SRCS += \
 	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
 	$(altera_avalon_sysid_qsys_driver_C_LIB_SRCS) \
+<<<<<<< HEAD
+=======
+	$(altera_avalon_timer_driver_C_LIB_SRCS) \
+>>>>>>> origin
 	$(altera_nios2_qsys_hal_driver_C_LIB_SRCS) \
 	$(hal_C_LIB_SRCS)
 
