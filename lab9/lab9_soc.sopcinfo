@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="lab9_soc" kind="lab9_soc" version="1.0" fabric="QSYS">
  <!-- Format version 15.0 145 (Future versions may contain additional information.) -->
-<<<<<<< HEAD
- <!-- 2017.11.04.12:04:32 -->
+ <!-- 2017.11.06.10:31:19 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1509822272</value>
-=======
- <!-- 2017.10.31.13:48:44 -->
- <!-- A collection of modules and connections -->
- <parameter name="AUTO_GENERATION_ID">
-  <type>java.lang.Integer</type>
-  <value>1509475724</value>
->>>>>>> origin
+  <value>1509985879</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -569,11 +561,13 @@ parameters are a RESULT of the module parameters. -->
     <role>address</role>
    </port>
    <port>
-<<<<<<< HEAD
     <name>AVL_BYTE_IN</name>
-=======
+    <direction>Input</direction>
+    <width>4</width>
+    <role>byteenable</role>
+   </port>
+   <port>
     <name>AVL_BYTE_EN</name>
->>>>>>> origin
     <direction>Input</direction>
     <width>4</width>
     <role>byteenable</role>
@@ -623,11 +617,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="associatedReset">
     <type>java.lang.String</type>
-<<<<<<< HEAD
-    <value></value>
-=======
     <value>RESET</value>
->>>>>>> origin
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -653,11 +643,7 @@ parameters are a RESULT of the module parameters. -->
    <isStart>false</isStart>
    <port>
     <name>EXPORT_DATA</name>
-<<<<<<< HEAD
-    <direction>Output</direction>
-=======
     <direction>Input</direction>
->>>>>>> origin
     <width>32</width>
     <role>EXPORT_DATA</role>
    </port>
@@ -13897,11 +13883,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-<<<<<<< HEAD
-   <value>1509822272</value>
-=======
-   <value>1509475724</value>
->>>>>>> origin
+   <value>1509985879</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -13921,11 +13903,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-<<<<<<< HEAD
-   <value>1509822272</value>
-=======
-   <value>1509475724</value>
->>>>>>> origin
+   <value>1509985879</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -13941,11 +13919,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-<<<<<<< HEAD
-   <value>1509822272</value>
-=======
-   <value>1509475724</value>
->>>>>>> origin
+   <value>1509985879</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -15834,7 +15808,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>irq</endConnectionPoint>
  </connection>
  <connection
-<<<<<<< HEAD
    name="clk_0.clk_reset/AES.RESET"
    kind="reset"
    version="15.0"
@@ -15862,8 +15835,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>RESET</endConnectionPoint>
  </connection>
  <connection
-=======
->>>>>>> origin
    name="clk_0.clk_reset/sdram_pll.inclk_interface_reset"
    kind="reset"
    version="15.0"
@@ -16134,7 +16105,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>reset</endConnectionPoint>
  </connection>
  <connection
-<<<<<<< HEAD
    name="clk_0.clk_reset/TIMER.reset"
    kind="reset"
    version="15.0"
@@ -16162,8 +16132,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>reset</endConnectionPoint>
  </connection>
  <connection
-=======
->>>>>>> origin
    name="clk_0.clk_reset/onchip_memory2_0.reset1"
    kind="reset"
    version="15.0"
@@ -16677,11 +16645,7 @@ parameters are a RESULT of the module parameters. -->
   <version>15.0</version>
  </plugin>
  <plugin>
-<<<<<<< HEAD
   <instanceCount>23</instanceCount>
-=======
-  <instanceCount>21</instanceCount>
->>>>>>> origin
   <name>reset</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
