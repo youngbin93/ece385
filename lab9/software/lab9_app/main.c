@@ -17,7 +17,7 @@ University of Illinois ECE Department
 volatile unsigned int * AES_PTR = (unsigned int *) 0x00000040;
 
 // Execution mode: 0 for testing, 1 for benchmarking
-int run_mode = 0;
+int run_mode = 1;
 
 /** charToHex
  *  Convert a single character to the 4-bit value it represents.
@@ -406,6 +406,14 @@ void encrypt(unsigned char * plaintext_asc, unsigned char * key_asc, unsigned lo
 // Perform AES Decryption in Hardware
 void decrypt(unsigned long * state, unsigned long * key)
 {
+	AES_PTR[0] = key[0];
+	AES_PTR[1] = key[1];
+	AES_PTR[2] = key[2];
+	AES_PTR[3] = key[3];
+	AES_PTR[4] = state[0];
+	AES_PTR[5] = state[1];
+	AES_PTR[6] = state[2];
+	AES_PTR[7] = state[3];
 	return;
 }
 
@@ -433,7 +441,7 @@ int main()
 			scanf("%s", key_asc);
 			printf("\n");
 			encrypt(plaintext_asc, key_asc, state, key);
-			printf("\nEncrpted message is: \n");
+			printf("\nEncrypted message is: \n");
 			for(i = 0; i < 4; i++){
 				printf("%08lX\n", state[i]);
 			}
