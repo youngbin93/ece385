@@ -4,7 +4,7 @@
 
 `timescale 1 ps / 1 ps
 module lab9_soc (
-		input  wire [31:0] aes_export_EXPORT_DATA, // aes_export.EXPORT_DATA
+		output wire [31:0] aes_export_EXPORT_DATA, // aes_export.EXPORT_DATA
 		input  wire        clk_clk,                //        clk.clk
 		input  wire        reset_reset_n,          //      reset.reset_n
 		output wire        sdram_clk_clk,          //  sdram_clk.clk
