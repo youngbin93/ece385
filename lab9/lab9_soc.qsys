@@ -43,14 +43,11 @@
    }
    element TIMER.s1
    {
-<<<<<<< HEAD
-=======
       datum _lockedAddress
       {
          value = "0";
          type = "boolean";
       }
->>>>>>> origin
       datum baseAddress
       {
          value = "32";
@@ -94,8 +91,6 @@
       datum baseAddress
       {
          value = "208";
-<<<<<<< HEAD
-=======
          type = "String";
       }
    }
@@ -104,7 +99,6 @@
       datum _originalDeviceFamily
       {
          value = "Cyclone IV E";
->>>>>>> origin
          type = "String";
       }
    }
