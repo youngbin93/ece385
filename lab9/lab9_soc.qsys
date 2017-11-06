@@ -1028,10 +1028,7 @@
    end="TIMER.irq">
   <parameter name="irqNumber" value="0" />
  </connection>
-<<<<<<< HEAD
  <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="AES.RESET" />
-=======
->>>>>>> origin
  <connection
    kind="reset"
    version="15.0"
