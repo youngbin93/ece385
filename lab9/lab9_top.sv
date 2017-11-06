@@ -53,6 +53,20 @@ lab9_soc lab9_qsystem (
 	.sdram_clk_clk(DRAM_CLK)						// Clock out to SDRAM
 );
 
+avalon_aes_interface avalon_aes_interface
+(
+	.CLK(CLOCK_50),
+	.RESET(KEY[0]),
+	.AVL_READ(1'b0),
+	.AVL_WRITE(1'b1),
+	.AVL_CS(1'b1), 
+	.AVL_BYTE_EN(1'b1111), 
+	.AVL_ADDR(),
+	.AVL_WRITEDATA(), 
+	.AVL_READDATA(), 
+	.EXPORT_DATA(AES_EXPORT_DATA)
+);
+
 // Display the first 4 and the last 4 hex values of the received message
 hexdriver hexdrv0 (
 	.In(AES_EXPORT_DATA[3:0]),
