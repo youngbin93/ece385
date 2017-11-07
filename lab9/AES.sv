@@ -57,7 +57,7 @@ InvMixColumns  InvMixColumns	(.state(INV_MIX_COL_MUX_OUT), .out(INV_MIX_COL_OUT)
 InvSub			InvSub			(.in(state), .out(inv_sub_state));
 
 /* MUXes*/
-mux4 #(N(128)) STATE_MUX
+mux4 #(.N(128)) STATE_MUX
 (
 	.A(new_state), 
 	.B(inv_shift_state), 
@@ -67,7 +67,7 @@ mux4 #(N(128)) STATE_MUX
 	.select(state_select)
 );
 
-mux4 #(N(32)) INV_MIX_COL_MUX
+mux4 #(.N(32)) INV_MIX_COL_MUX
 (
 	.A(state[31:0]), 
 	.B(state[63:32]), 
@@ -92,6 +92,11 @@ end
 always_comb
 begin 
 	Next_state = State; 
+	col_select = 2'b00; 
+	state_select = 2'b00; 
+	Done = Done;
+	round = round;
+	key_wait = key_wait;
 	
 	/*Next state logic */
 	unique case(State)
@@ -170,11 +175,9 @@ begin
 		begin 
 			Next_state = IDLE;
 		end
+		default:;
 		
 	endcase
-	
-	col_select = 2'b00; 
-	state_select = 2'b00; 
 	
 	/*Current state activity */
 	case(State)
@@ -246,6 +249,7 @@ begin
 			AES_DONE = 1'b1;
 			AES_MSG_DEC = state;
 		end
+		default:;
 	endcase
 end
 endmodule

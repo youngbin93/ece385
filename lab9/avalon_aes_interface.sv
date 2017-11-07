@@ -40,6 +40,7 @@ module avalon_aes_interface (
 
 logic [31:0] register_file[16];
 logic [127:0] AES_MSG_DEC;
+logic AES_DONE;
 assign AVL_READDATA = (AVL_CS && AVL_READ) ?
                          register_file[AVL_ADDR]
                         :32'b0;
@@ -51,7 +52,7 @@ AES AES
 	.CLK(CLK),
 	.RESET(RESET),
 	.AES_START(register_file[14]),
-	.AES_DONE(register_file[15]),
+	.AES_DONE(AES_DONE),
 	.AES_KEY({register_file[3], register_file[2],register_file[1],register_file[0]}),
 	.AES_MSG_ENC({register_file[7], register_file[6],register_file[5], register_file[4]}),
 	.AES_MSG_DEC(AES_MSG_DEC)
@@ -84,8 +85,9 @@ else if(AVL_WRITE && AVL_CS) begin: SW_WRITE_TO_REG
 	endcase
 
 end
-else if(AVL_WRITE) begin: HW_WRITE_TO_REG
+else if(AES_DONE) begin: HW_WRITE_TO_REG
 
+		  register_file[15] <= AES_DONE;
         register_file[11] <= AES_MSG_DEC[127:96];
 		  register_file[10] <= AES_MSG_DEC[95:64];
 		  register_file[9] <= AES_MSG_DEC[63:32];
